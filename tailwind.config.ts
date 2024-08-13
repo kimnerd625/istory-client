@@ -12,6 +12,9 @@ const config: Config = {
         home: {
           bg: "#F4F5FA",
         },
+        main: {
+          400: "#9FB8F8",
+        },
       },
     },
   },
