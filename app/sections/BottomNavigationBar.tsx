@@ -14,17 +14,17 @@ const BottomNavigationBar = () => {
           <HomeIcon width={24} height={24} />
         </div>
       </Link>
-      <Link href="/">
+      <Link href="/box">
         <div className="flex flex-row justify-center items-center">
           <BoxIcon width={24} height={24} />
         </div>
       </Link>
-      <Link href="/">
+      <Link href="/archive">
         <div className="flex flex-row justify-center items-center">
           <ArchiveIcon width={24} height={24} />
         </div>
       </Link>
-      <Link href="/">
+      <Link href="/account">
         <div className="flex flex-row justify-center items-center">
           <AccountIcon width={24} height={24} />
         </div>
