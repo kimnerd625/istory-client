@@ -17,7 +17,7 @@ const BoxHero = () => {
         />
       </div>
       <div className="mt-15 w-full px-9 flex flex-row justify-center items-center">
-        <div className="w-full cursor-pointer py-5 flex flex-row justify-center items-center rounded-lg bg-main-400">
+        <div className="w-full cursor-pointer py-5 flex flex-row justify-center items-center rounded-lg bg-blue-600 hover:bg-blue-500">
           <span className="font-bold text-white text-xl tracking-tight leading-4">
             보러 가기
           </span>
