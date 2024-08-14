@@ -1,7 +1,12 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 import Image from "next/image";
 
-const BoxHero = () => {
+interface BoxHeroProps {
+  isBoxOpened: boolean;
+  setIsBoxOpened: React.Dispatch<SetStateAction<boolean>>;
+}
+
+const BoxHero = ({ isBoxOpened, setIsBoxOpened }: BoxHeroProps) => {
   return (
     <div className="pt-10 w-full flex flex-col justify-center items-center text-center">
       <h3 className="font-bold text-3xl text-[#1c1c1c] leading-10 tracking-tight">
@@ -17,7 +22,10 @@ const BoxHero = () => {
         />
       </div>
       <div className="mt-15 w-full px-9 flex flex-row justify-center items-center">
-        <div className="w-full cursor-pointer py-5 flex flex-row justify-center items-center rounded-lg bg-blue-600 hover:bg-blue-500">
+        <div
+          onClick={() => setIsBoxOpened(true)}
+          className="w-full cursor-pointer py-5 flex flex-row justify-center items-center rounded-lg bg-blue-600 hover:bg-blue-500"
+        >
           <span className="font-bold text-white text-xl tracking-tight leading-4">
             보러 가기
           </span>
