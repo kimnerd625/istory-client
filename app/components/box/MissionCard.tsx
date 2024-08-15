@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
 
-interface MissionInputProps {
+interface MissionCardProps {
   userName: string;
   userImageUrl: string;
   isMe: boolean;
 }
 
-const MissionInput = ({ userName, userImageUrl, isMe }: MissionInputProps) => {
+const MissionCard = ({ userName, userImageUrl, isMe }: MissionCardProps) => {
   return (
     <div className="w-full min-h-[200px] flex flex-col justify-start items-start gap-y-2.5 py-1 px-1.5">
       <div className="w-full flex flex-row justify-start items-center gap-x-3">
@@ -29,4 +29,4 @@ const MissionInput = ({ userName, userImageUrl, isMe }: MissionInputProps) => {
   );
 };
 
-export default MissionInput;
+export default MissionCard;

@@ -1,7 +1,7 @@
 "use client";
 
 import BoxHero from "@/app/components/box/BoxHero";
-import MissionInput from "@/app/components/box/MissionInput";
+import MissionCard from "@/app/components/box/MissionCard";
 import React, { useState } from "react";
 
 const MemoryBox = () => {
@@ -36,17 +36,17 @@ const MemoryBox = () => {
               </div>
             </section>
             <section className="w-full flex flex-col justify-center items-center">
-              <MissionInput
+              <MissionCard
                 userName="민지"
                 userImageUrl="/images/user-default2.png"
                 isMe={true}
               />
-              <MissionInput
+              <MissionCard
                 userName="엄마"
                 userImageUrl="/images/user-default.png"
                 isMe={false}
               />
-              <MissionInput
+              <MissionCard
                 userName="아빠"
                 userImageUrl="/images/user-default3.jpg"
                 isMe={false}
