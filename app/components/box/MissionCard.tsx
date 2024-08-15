@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface MissionCardProps {
   userName: string;
@@ -18,12 +19,18 @@ const MissionCard = ({ userName, userImageUrl, isMe }: MissionCardProps) => {
           {userName}
         </h5>
       </div>
-      <div className="w-full ">
-        <p className="text-[#B3B3B3] tracking-tight leading-5 font-normal text-sm">
-          {isMe
-            ? "이곳을 눌러 답변을 입력해주세요."
-            : "상대방의 답변을 기다리는 중입니다."}
-        </p>
+      <div className="w-full">
+        {isMe ? (
+          <Link href="/box/log">
+            <p className="text-[#1A2128] tracking-tight leading-5 font-normal text-sm">
+              이곳을 눌러 답변을 입력해주세요.
+            </p>
+          </Link>
+        ) : (
+          <p className="text-[#B3B3B3] tracking-tight leading-5 font-normal text-sm">
+            상대방의 답변을 기다리는 중입니다.
+          </p>
+        )}
       </div>
     </div>
   );

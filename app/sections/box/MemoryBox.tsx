@@ -11,7 +11,7 @@ const MemoryBox = () => {
     case true:
       return (
         <>
-          <div className="w-full px-5 py-7 flex flex-col justify-start items-center gap-y-7">
+          <div className="w-full px-5 py-7 flex flex-col justify-start items-center gap-y-9">
             <section className="w-full flex flex-col justify-start items-start gap-y-5">
               <div className="border-[1.6px] border-[#9FB8F8] px-4 py-2 rounded-lg flex flex-row justify-center items-center">
                 <span className="font-extrabold text-sm tracking-tight leading-4 text-[#9FB8F8]">
