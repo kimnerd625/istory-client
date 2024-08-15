@@ -1,12 +1,10 @@
 import React from "react";
-import BoxHero from "../components/box/BoxHero";
+import MemoryBox from "../sections/box/MemoryBox";
 
-const BoxPage = () => {
+export default function BoxPage() {
   return (
     <main className="w-full flex-1 flex flex-col justify-start items-center bg-home-bg">
-      <BoxHero />
+      <MemoryBox />
     </main>
   );
-};
-
-export default BoxPage;
+}
