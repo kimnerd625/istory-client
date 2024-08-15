@@ -3,7 +3,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-const ImageUploader = () => {
+interface ImageUploaderProps {}
+
+const ImageUploader = ({}: ImageUploaderProps) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,16 +23,26 @@ const ImageUploader = () => {
   return (
     <section className="flex flex-row justify-center items-center">
       <div
-        className="relative w-[200px] h-[200px] border-dashed shadow-xl rounded-xl cursor-pointer flex flex-1 justify-center items-center overflow-hidden"
+        className="relative w-[320px] h-[240px] border-dashed shadow-lg rounded-xl cursor-pointer flex flex-1 justify-center items-center overflow-hidden"
         onClick={handleClick}
       >
         {selectedImage ? (
-          <Image src={selectedImage} alt="업로드 된 이미지" fill />
+          <Image
+            src={selectedImage}
+            alt="업로드 된 이미지"
+            fill
+            style={{
+              objectFit: "cover",
+            }}
+          />
         ) : (
           <Image
             src="/images/image-upload-default.png"
             alt="기본 이미지"
             fill
+            style={{
+              objectFit: "cover",
+            }}
           />
         )}
       </div>
