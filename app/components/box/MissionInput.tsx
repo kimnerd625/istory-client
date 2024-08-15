@@ -20,7 +20,7 @@ const MissionInput = ({ userName, userImageUrl }: MissionInputProps) => {
       </div>
       <div className="w-full">
         <textarea
-          className="text-[#B3B3B3] tracking-tight leading-6 font-normal text-sm resize-none w-full bg-transparent h-[150px]"
+          className="text-[#1A2128] tracking-tight leading-6 font-normal text-sm resize-none w-full bg-transparent h-[150px] placeholder:text-[#B3B3B3] focus:ring-0 focus:outline-none"
           placeholder="이곳을 눌러 답변을 입력해주세요."
         />
       </div>
