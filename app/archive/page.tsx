@@ -1,11 +1,10 @@
 import React from "react";
+import ArchiveHeader from "../components/archive/ArchiveHeader";
 
-const ArchivePage = () => {
+export default function ArchivePage() {
   return (
     <main className="w-full flex-1 flex flex-col justify-start items-center bg-home-bg">
-      <h2>Archive Page</h2>
+      <ArchiveHeader />
     </main>
   );
-};
-
-export default ArchivePage;
+}
