@@ -15,7 +15,7 @@ const MissionInput = ({
   return (
     <div className="w-full min-h-[200px] flex flex-col justify-start items-start gap-y-2.5 py-1 px-1.5">
       <div className="w-full flex flex-row justify-start items-center gap-x-3">
-        <div className="relative w-10 h-10 overflow-hidden rounded-full border border-[#B3B3B3]">
+        <div className="relative min-w-10 min-h-10 rounded-full border border-[#B3B3B3]">
           <Image src={userImageUrl} alt="사용자 프로필 이미지" fill />
         </div>
         <h5 className="text-[#1A2128] font-semibold text-xl tracking-tight">
