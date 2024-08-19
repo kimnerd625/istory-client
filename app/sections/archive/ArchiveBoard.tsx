@@ -73,6 +73,8 @@ const ArchiveBoard = () => {
         <ArchiveCard missionNo={50} />
         <ArchiveCard missionNo={51} />
         <ArchiveCard missionNo={52} />
+        <div className="min-h-[50px] min-w-[50px] flex-1 aspect-square flex flex-row justify-start items-start" />
+        <div className="min-h-[50px] min-w-[50px] flex-1 aspect-square flex flex-row justify-start items-start" />
       </div>
     </section>
   );

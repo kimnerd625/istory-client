@@ -35,7 +35,7 @@ const BoxHero = ({ isBoxOpened, setIsBoxOpened }: BoxHeroProps) => {
       <div className="mt-15 w-full px-9 flex flex-row justify-center items-center">
         <div
           onClick={() => setIsBoxOpened(true)}
-          className="w-full cursor-pointer py-5 flex flex-row justify-center items-center rounded-lg bg-main-500 hover:bg-main-600"
+          className="w-full cursor-pointer py-[18px] flex flex-row justify-center items-center rounded-full bg-main-500 hover:bg-main-600"
         >
           <span className="font-bold text-white text-xl tracking-tight leading-4">
             열어 보기
