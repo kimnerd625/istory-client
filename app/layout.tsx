@@ -23,7 +23,6 @@ export default function RootLayout({
       <body
         className={`bg-home-bg min-h-screen flex flex-col justify-start items-center ${Pretendard.className}`}
       >
-        <Header />
         {children}
         <BottomNavigationBar />
       </body>

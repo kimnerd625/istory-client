@@ -14,6 +14,8 @@ const config: Config = {
         },
         main: {
           400: "#9FB8F8",
+          500: "#7DB0FF",
+          600: "#5F9AF5",
         },
       },
     },
