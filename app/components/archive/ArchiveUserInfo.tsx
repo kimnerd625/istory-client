@@ -12,11 +12,11 @@ const ArchiveUserInfo = ({ userImageUrl, userName }: ArchiveUserInfoProps) => {
       <div className="relative w-10 h-10 overflow-hidden rounded-full border border-[#B3B3B3]">
         <Image src={userImageUrl} alt="사용자 프로필 이미지" fill />
       </div>
-      <div className="w-full flex flex-col justify-start items-start">
+      <div className="flex flex-col justify-start items-start flex-1">
         <h5 className="text-[#1A2128] font-semibold text-xl tracking-tight">
           {userName}
         </h5>
-        <span className="text-[#B3B3B3] font-normal tracking-tight leading-5 text-sm">
+        <span className="text-[#B3B3B3] font-normal text-sm tracking-tight leading-5">
           08.15.목 오후 3:00
         </span>
       </div>

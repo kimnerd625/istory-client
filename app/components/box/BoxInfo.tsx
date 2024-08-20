@@ -13,10 +13,10 @@ const BoxInfo = ({
 }: BoxInfoProps) => {
   const insertBreaks = (text: string) => {
     return text.split("/ ").map((part, index) => (
-      <>
+      <React.Fragment key={index}>
         {index > 0 && <br />}
         {part}
-      </>
+      </React.Fragment>
     ));
   };
 
