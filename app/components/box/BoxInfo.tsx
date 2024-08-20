@@ -2,20 +2,36 @@ import React from "react";
 
 interface BoxInfoProps {
   isDateVisible: boolean;
+  isLabelVisible?: boolean;
+  contents?: string;
 }
 
-const BoxInfo = ({ isDateVisible }: BoxInfoProps) => {
+const BoxInfo = ({
+  isDateVisible,
+  isLabelVisible = true,
+  contents = "오늘은 식목일입니다./ 가족과 함께 산책을 나가보세요.",
+}: BoxInfoProps) => {
+  const insertBreaks = (text: string) => {
+    return text.split("/ ").map((part, index) => (
+      <React.Fragment key={index}>
+        {index > 0 && <br />}
+        {part}
+      </React.Fragment>
+    ));
+  };
+
   return (
     <section className="w-full flex flex-col justify-start items-start gap-y-5">
-      <div className="border-[1.6px] border-[#9FB8F8] px-4 py-2 rounded-lg flex flex-row justify-center items-center">
-        <span className="font-extrabold text-sm tracking-tight leading-4 text-[#9FB8F8]">
-          이번주 추억 카드
-        </span>
-      </div>
+      {isLabelVisible && (
+        <div className="border-[1.6px] border-[#9FB8F8] px-4 py-2 rounded-lg flex flex-row justify-center items-center">
+          <span className="font-extrabold text-sm tracking-tight leading-4 text-[#9FB8F8]">
+            이번주 추억 카드
+          </span>
+        </div>
+      )}
       <div className="w-full flex flex-col justify-start items-start gap-y-2">
-        <p className="font-semibold tracking-tight leading-6 text-xl text-black">
-          오늘은 식목일입니다. <br />
-          가족과 함께 산책을 나가보세요.
+        <p className="font-semibold tracking-tight leading-6 text-xl text-black whitespace-pre-line break-keep">
+          {insertBreaks(contents)}
         </p>
         {isDateVisible && (
           <div className="w-full flex flex-row justify-start items-center gap-x-2">
