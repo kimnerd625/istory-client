@@ -6,8 +6,8 @@ import ArchiveDetailContent from "./ArchiveDetailContent";
 
 interface ArchiveDetailCardProps {
   userName: string;
-  userImageUrl: string;
-  createdAt: string;
+  userImageUrl?: string;
+  createdAt?: string;
 }
 
 const ArchiveDetailCard = ({
