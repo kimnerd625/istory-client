@@ -1,6 +1,7 @@
 import { API } from "./Token";
 
-const BASE_API = "http://localhost:8080/api/v1/user";
+const BASE_API =
+  "http://ec2-52-79-247-22.ap-northeast-2.compute.amazonaws.com:8080/api/v1/user";
 
 /**
  * 1. 회원가입 : joinAPI
@@ -58,4 +59,8 @@ export const joinByInviteAPI = async (userForm: {
   inviteCode: string; // 수정 예정
 }) => {
   return await API.post(`${BASE_API}/joinByInvite`, userForm);
+};
+
+export const getUserAllAPI = async () => {
+  return await API.get(`${BASE_API}/all`, { withCredentials: true });
 };
