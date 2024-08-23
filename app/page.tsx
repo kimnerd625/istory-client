@@ -27,13 +27,16 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/proxy", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        });
+        const res = await fetch(
+          "http://ec2-52-78-83-122.ap-northeast-2.compute.amazonaws.com:8080/api/v1/user/all",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
 
         if (res.ok) {
           const json: ApiResponse = await res.json();
