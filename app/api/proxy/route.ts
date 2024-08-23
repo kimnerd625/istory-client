@@ -29,7 +29,7 @@ export async function GET() {
 
     // JSON 파싱이 성공하면, 파싱된 데이터를 반환
     return NextResponse.json(data);
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error fetching data from Java API:", error);
     return NextResponse.json(
       { error: "Failed to connect to API", message: error.message },
