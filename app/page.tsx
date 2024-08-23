@@ -50,8 +50,16 @@ export default function Home() {
           );
         }
       } catch (error) {
-        console.error("An error occurred while fetching data:", error);
-        setError(`An error occurred: ${error.message}`);
+        if (error instanceof Error) {
+          console.error(
+            "An error occurred while fetching data:",
+            error.message
+          );
+          setError(`An error occurred: ${error.message}`);
+        } else {
+          console.error("An unexpected error occurred:", error);
+          setError("An unexpected error occurred.");
+        }
       }
     };
 
