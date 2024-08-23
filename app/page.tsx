@@ -1,6 +1,5 @@
 "use client";
 
-import { NextResponse } from "next/server";
 import { useEffect, useState } from "react";
 
 interface ApiResponse {
@@ -40,7 +39,6 @@ export default function Home() {
           const json: ApiResponse = await res.json();
           setData(json);
         } else {
-          // 오류 응답의 본문을 파싱하여 출력
           const errorResponse = await res.json();
           console.error("Failed to fetch data:", res.statusText);
           console.error("Error details:", errorResponse);
@@ -50,25 +48,11 @@ export default function Home() {
             }. Error details: ${JSON.stringify(errorResponse)}`
           );
         }
-      } catch (error) {
+      } catch (error: any) {
+        // error를 any로 처리
         console.error("Error fetching data from Java API:", error);
 
-        // 'error'를 'unknown'에서 'Error'로 타입 좁히기
-        if (error instanceof Error) {
-          return NextResponse.json(
-            { error: "Failed to connect to API", message: error.message },
-            { status: 500 }
-          );
-        } else {
-          // 'error'가 'Error' 객체가 아닌 경우
-          return NextResponse.json(
-            {
-              error: "Failed to connect to API",
-              message: "Unknown error occurred",
-            },
-            { status: 500 }
-          );
-        }
+        setError(`Failed to connect to API: ${error.message}`);
       }
     };
 
