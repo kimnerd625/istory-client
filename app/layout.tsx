@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
-import Header from "./sections/Header";
 import BottomNavigationBar from "./sections/BottomNavigationBar";
 
 export const metadata: Metadata = {
