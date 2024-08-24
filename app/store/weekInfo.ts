@@ -1,6 +1,16 @@
 import { create } from "zustand";
 
-const useWeekInfoStore = create((set)=>({
+interface WeekInfo {
+  weeks: number;
+  info: string;
+}
+
+interface WeekInfoProps {
+  weekInfo: WeekInfo | null;
+  setWeekInfo: (newInfo: WeekInfo) => void;
+}
+
+const useWeekInfoStore = create<WeekInfoProps>((set)=>({
   weekInfo: null,
 
   /*
@@ -9,7 +19,7 @@ const useWeekInfoStore = create((set)=>({
     info: string
   }
   */
-  setWeekInfo : (newInfo: {weeks: number, info: string}) => 
+  setWeekInfo : (newInfo: WeekInfo) => 
     set(() => ({
       weekInfo: newInfo
     }))
