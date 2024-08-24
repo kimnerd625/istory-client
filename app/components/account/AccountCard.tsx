@@ -1,23 +1,26 @@
-import React, { SetStateAction } from "react";
+import React, { useState, SetStateAction } from "react";
 import Link from "next/link";
 
 interface AccountCardProps {
   accountNo: string;
+  totalBalance: string;
+
 }
 
-const AccountCard = ({ accountNo = "0000000000000" }: AccountCardProps) => {
+const AccountCard = ({ accountNo, totalBalance}: AccountCardProps) => {
 
   return (
     <div className="w-full bg-[#98BFFB] px-5 py-4 flex flex-row justify-between gap-[10px] rounded-[12px] shadow-[0_5px_10px_0_rgba(0,0,0,0.15)]">
       <div className="flex flex-col">
         <div className="flex flex-row">
           <span className = "text-[#ffffff] font-pretendard text-[14px] font-light">
-            우리은행
+            신한은행
           </span>
-          <span className = "text-[#ffffff] font-pretendard text-[14px] font-light "> 0000000000000
+          <span className = "text-[#ffffff] font-pretendard text-[14px] font-light ">
+            {accountNo}
           </span>
         </div>
-        <div className = "text-[#ffffff] font-pretendard text-[26px] font-bold ">200,000원</div>
+        <div className = "text-[#ffffff] font-pretendard text-[26px] font-bold ">{totalBalance}원</div>
       </div>
   
 

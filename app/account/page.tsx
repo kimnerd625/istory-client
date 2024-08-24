@@ -13,7 +13,7 @@ export default function AccountPage() {
         <SummaryGui accountName = {"우리가족 사랑해"} week = {4} />
         <span className="items-center mt-5 text-[14px] text-[#757575] font-light">보유 적금 보기</span>
         <div className="flex flex-col w-full px-5 gap-y-5">
-          <AccountCard accountNo={""} />
+          <AccountCard accountNo={"0000000000000"} totalBalance={"200000"}/>
           <InterestCard/>
         </div>
 
