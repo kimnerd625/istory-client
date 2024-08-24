@@ -1,4 +1,5 @@
 import React, { SetStateAction } from "react";
+import Link from "next/link";
 
 interface AccountCardProps {
   accountNo: string;
@@ -11,7 +12,7 @@ const AccountCard = ({ accountNo = "0000000000000" }: AccountCardProps) => {
       <div className="flex flex-col">
         <div className="flex flex-row">
           <span className = "text-[#ffffff] font-pretendard text-[14px] font-light">
-            신한은행
+            우리은행
           </span>
           <span className = "text-[#ffffff] font-pretendard text-[14px] font-light "> 0000000000000
           </span>
@@ -21,7 +22,9 @@ const AccountCard = ({ accountNo = "0000000000000" }: AccountCardProps) => {
   
 
       <div className="flex items-center">
-          <span className = "float text-[#ffffff] font-pretendard text-4 font-normal">조회</span>
+          <Link href="/account/check">
+            <span className = "float text-[#ffffff] font-pretendard text-4 font-normal">조회</span>
+          </Link>
           <span className="px-2">
           <img
               src="/images/right-angle-white.png"

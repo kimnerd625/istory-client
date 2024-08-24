@@ -1,6 +1,11 @@
 import React, { SetStateAction } from "react";
 
-const AdvertisingCard = () => {
+interface InquiryinfoCardProps {
+  accountNo: string;
+}
+
+
+const InquiryinfoCard = () => {
 
   return (
     <div className="w-full  px-5 py-4 flex justify-start items-start rounded-[12px] border border-[#E2E2E2] bg-white shadow-[0_0_12px_0_rgba(0,0,0,0.10)]">
@@ -17,4 +22,4 @@ const AdvertisingCard = () => {
   );
 };
 
-export default AdvertisingCard;
+export default InquiryinfoCard;
