@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import RoleSelect from "../sections/signup/RoleSelect";
 import SecondForm from "../sections/signup/SecondForm";
 import ThirdForm from "../sections/signup/ThirdForm";
+import { toast } from "sonner";
 
 export default function SignUpPage() {
   const [step, setStep] = useState<number>(1);
@@ -38,9 +39,9 @@ export default function SignUpPage() {
       if (!response.ok) {
         throw new Error("회원가입에 실패했습니다.");
       }
-      console.log("회가성공");
+      toast.success("회원가입이 성공적으로 이뤄졌습니다.");
     } catch (error) {
-      console.log("회가실패");
+      toast.error("회원가입에 실패했습니다.");
     }
   };
 
