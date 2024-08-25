@@ -10,6 +10,7 @@ interface ThirdFormProps {
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  handleSubmitButton: () => void;
 }
 
 const ThirdForm = ({
@@ -19,6 +20,7 @@ const ThirdForm = ({
   setEmail,
   step,
   setStep,
+  handleSubmitButton,
 }: ThirdFormProps) => {
   return (
     <section className="w-full flex-1 flex flex-col justify-between items-center">
@@ -36,6 +38,7 @@ const ThirdForm = ({
             이메일
           </label>
           <input
+            key="emailinput"
             type="text"
             id="email"
             value={email}
@@ -52,6 +55,7 @@ const ThirdForm = ({
             비밀번호
           </label>
           <input
+            key="passwordinput"
             type="password"
             id="password"
             value={password}
@@ -61,7 +65,11 @@ const ThirdForm = ({
           />
         </div>
       </div>
-      <NextButton step={step} setStep={setStep} />
+      <NextButton
+        step={step}
+        setStep={setStep}
+        handleSubmitButton={handleSubmitButton}
+      />
     </section>
   );
 };

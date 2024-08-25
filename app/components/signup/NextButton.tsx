@@ -3,14 +3,19 @@ import React from "react";
 interface NextButtonProps {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  handleSubmitButton?: () => void;
 }
 
-const NextButton = ({ step, setStep }: NextButtonProps) => {
+const NextButton = ({ step, setStep, handleSubmitButton }: NextButtonProps) => {
   const handleClickNextButton = () => {
     if (step === 1) {
       setStep(2);
     } else if (step === 2) {
       setStep(3);
+    } else if (step === 3) {
+      if (handleSubmitButton) {
+        handleSubmitButton();
+      }
     }
   };
 

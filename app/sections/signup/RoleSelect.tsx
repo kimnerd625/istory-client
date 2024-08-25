@@ -8,6 +8,7 @@ interface RoleSelectProps {
   role: string;
   setRole: React.Dispatch<React.SetStateAction<string>>;
   step: number;
+
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 

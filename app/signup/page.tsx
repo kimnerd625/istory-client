@@ -14,52 +14,69 @@ export default function SignUpPage() {
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [gender, setGender] = useState<string>("female");
 
-  const handleSubmitButton = async () => {};
+  const handleSubmitButton = async () => {
+    try {
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          email,
+          password,
+          name,
+          phone,
+          gender,
+          birthdate,
+          role,
+        }),
+      });
 
-  const SectionByStep = () => {
-    switch (step) {
-      case 1:
-        return (
-          <RoleSelect
-            role={role}
-            setRole={setRole}
-            step={step}
-            setStep={setStep}
-          />
-        );
-
-      case 2:
-        return (
-          <SecondForm
-            name={name}
-            setName={setName}
-            step={step}
-            setStep={setStep}
-            birth={birthdate}
-            setBirth={setBirthdate}
-            phone={phone}
-            setPhone={setPhone}
-          />
-        );
-
-      case 3:
-        return (
-          <ThirdForm
-            step={step}
-            setStep={setStep}
-            password={password}
-            setPassword={setPassword}
-            email={email}
-            setEmail={setEmail}
-          />
-        );
+      if (!response.ok) {
+        throw new Error("회원가입에 실패했습니다.");
+      }
+      console.log("회가성공");
+    } catch (error) {
+      console.log("회가실패");
     }
   };
 
   return (
     <main className="w-full flex-1 flex flex-col justify-start items-center bg-home-bg overflow-x-hidden py-[56px] px-5">
-      <SectionByStep />
+      {step === 1 && (
+        <RoleSelect
+          role={role}
+          setRole={setRole}
+          step={step}
+          setStep={setStep}
+        />
+      )}
+      {step === 2 && (
+        <SecondForm
+          name={name}
+          setName={setName}
+          step={step}
+          setStep={setStep}
+          birth={birthdate}
+          setBirth={setBirthdate}
+          phone={phone}
+          setPhone={setPhone}
+        />
+      )}
+      {step === 3 && (
+        <ThirdForm
+          step={step}
+          setStep={setStep}
+          password={password}
+          setPassword={setPassword}
+          email={email}
+          setEmail={setEmail}
+          handleSubmitButton={handleSubmitButton}
+        />
+      )}
     </main>
   );
 }

@@ -40,6 +40,7 @@ const SecondForm = ({
             이름
           </label>
           <input
+            key="nameinput"
             type="text"
             id="name"
             value={name}
@@ -56,6 +57,7 @@ const SecondForm = ({
             생년월일
           </label>
           <input
+            key="birthdateinput"
             type="text"
             id="birth"
             value={birth}
@@ -72,6 +74,7 @@ const SecondForm = ({
             휴대폰 정보
           </label>
           <input
+            key="phoneinput"
             type="text"
             id="phone"
             value={phone}
