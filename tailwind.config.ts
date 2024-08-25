@@ -13,7 +13,8 @@ const config: Config = {
           bg: "#F4F5FA",
         },
         main: {
-          400: "#9FB8F8",
+          300: "#CADFFF",
+          400: "#98BFFB",
           500: "#7DB0FF",
           600: "#5F9AF5",
         },
