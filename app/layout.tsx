@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import BottomNavigationBar from "./sections/BottomNavigationBar";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "IStory: 아이스토리",
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body
         className={`bg-home-bg min-h-screen flex flex-col justify-start items-center ${Pretendard.className}`}
       >
+        <Toaster richColors position="top-center" />
         {children}
         <BottomNavigationBar />
       </body>
