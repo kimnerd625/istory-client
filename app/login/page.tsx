@@ -1,8 +1,13 @@
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
-import LongButton from "../components/LongButton";
 import Link from "next/link";
 
+import LongButton from "../components/LongButton";
+
 export default function LoginPage() {
+  const [isLoginOpen, setIsLoginOpen] = useState<boolean>();
+
   return (
     <main className="w-full flex-1 flex flex-col justify-start items-center bg-home-bg">
       <section className="py-16 w-full flex flex-col justify-start items-center ">
