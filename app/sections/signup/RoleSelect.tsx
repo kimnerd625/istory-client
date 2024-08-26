@@ -3,6 +3,7 @@
 import React from "react";
 import SignUpHeader from "@/app/components/signup/SignUpHeader";
 import NextButton from "@/app/components/signup/NextButton";
+import Image from "next/image";
 
 interface RoleSelectProps {
   role: string;
@@ -13,12 +14,8 @@ interface RoleSelectProps {
 }
 
 const RoleSelect = ({ role, setRole, step, setStep }: RoleSelectProps) => {
-  const handleClickRoleButton = () => {
-    if (role === "parent") {
-      setRole("child");
-    } else {
-      setRole("parent");
-    }
+  const handleClickRoleButton = (id: string) => {
+    setRole(id);
   };
 
   return (
@@ -31,22 +28,38 @@ const RoleSelect = ({ role, setRole, step, setStep }: RoleSelectProps) => {
       <div className="w-full px-[50px] flex flex-row justify-center items-center gap-x-[34px]">
         <div className="flex flex-col justify-center items-center gap-[19px]">
           <div
-            onClick={() => handleClickRoleButton()}
-            className={`min-w-[112px] min-h-[140px] rounded-[20px] ${
+            id="parent"
+            onClick={(e) => handleClickRoleButton(e.currentTarget.id)}
+            className={`relative min-w-[112px] min-h-[140px] rounded-[20px] ${
               role === "parent" ? "bg-main-400" : "bg-[#E4E4E4]"
             }`}
-          ></div>
+          >
+            <Image
+              src="/images/image-parent.png"
+              alt="부모 이미지"
+              fill
+              style={{ objectFit: "contain" }}
+            />
+          </div>
           <span className="text-[#757575] text-xl font-medium tracking-tight leading-5">
             부모
           </span>
         </div>
         <div className="flex flex-col justify-center items-center gap-[19px]">
           <div
-            onClick={() => handleClickRoleButton()}
-            className={`min-w-[112px] min-h-[140px] rounded-[20px] ${
+            id="child"
+            onClick={(e) => handleClickRoleButton(e.currentTarget.id)}
+            className={`relative min-w-[112px] min-h-[140px] rounded-[20px] ${
               role === "child" ? "bg-main-400" : "bg-[#E4E4E4]"
             }`}
-          ></div>
+          >
+            <Image
+              src="/images/image-child.png"
+              alt="자녀 이미지"
+              fill
+              style={{ objectFit: "contain" }}
+            />
+          </div>
           <span className="text-[#757575] text-xl font-medium tracking-tight leading-5">
             자식
           </span>
