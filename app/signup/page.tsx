@@ -15,10 +15,17 @@ export default function SignUpPage() {
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [gender, setGender] = useState<string>("female");
+  const [gender, setGender] = useState<string>("");
 
   const handleSubmitButton = async () => {
     try {
+      let genderStr = "male";
+      if (gender == "1" || gender == "3") {
+        genderStr = "male";
+      } else if (gender == "2" || gender == "4") {
+        genderStr = "female";
+      }
+
       const response = await fetch("/api/signup", {
         method: "POST",
         headers: {
@@ -30,7 +37,7 @@ export default function SignUpPage() {
           password,
           name,
           phone,
-          gender,
+          genderStr,
           birthdate,
           role,
         }),
@@ -65,6 +72,8 @@ export default function SignUpPage() {
           setBirth={setBirthdate}
           phone={phone}
           setPhone={setPhone}
+          gender={gender}
+          setGender={setGender}
         />
       )}
       {step === 3 && (
