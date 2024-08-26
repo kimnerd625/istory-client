@@ -5,9 +5,11 @@ import RoleSelect from "../sections/signup/RoleSelect";
 import SecondForm from "../sections/signup/SecondForm";
 import ThirdForm from "../sections/signup/ThirdForm";
 import { toast } from "sonner";
+import Spinner from "../components/Spinner";
 
 export default function SignUpPage() {
   const [step, setStep] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [role, setRole] = useState<string>("parent");
   const [name, setName] = useState<string>("");
@@ -18,6 +20,7 @@ export default function SignUpPage() {
   const [gender, setGender] = useState<string>("");
 
   const handleSubmitButton = async () => {
+    setLoading(true);
     try {
       let genderStr = "male";
       if (gender == "1" || gender == "3") {
@@ -49,11 +52,14 @@ export default function SignUpPage() {
       toast.success("회원가입이 성공적으로 이뤄졌습니다.");
     } catch (error) {
       toast.error("회원가입에 실패했습니다.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <main className="w-full flex-1 flex flex-col justify-start items-center bg-home-bg overflow-x-hidden py-[56px] px-5">
+      {loading && <Spinner />}
       {step === 1 && (
         <RoleSelect
           role={role}
