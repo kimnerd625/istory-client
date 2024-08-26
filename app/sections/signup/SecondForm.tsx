@@ -50,6 +50,7 @@ const SecondForm = ({
         firstLine="회원 가입을 위해"
         secondLine="아래 정보를 입력해주세요."
         step={step}
+        setStep={setStep}
       />
       <div className="w-full flex flex-col justify-center items-start gap-y-8">
         <div className="w-full flex flex-col justify-start items-start gap-y-2">

@@ -9,7 +9,6 @@ interface RoleSelectProps {
   role: string;
   setRole: React.Dispatch<React.SetStateAction<string>>;
   step: number;
-
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -24,6 +23,7 @@ const RoleSelect = ({ role, setRole, step, setStep }: RoleSelectProps) => {
         firstLine="부모 / 자녀 중"
         secondLine="하나를 선택해주세요."
         step={step}
+        setStep={setStep}
       />
       <div className="w-full px-[50px] flex flex-row justify-center items-center gap-x-[34px]">
         <div className="flex flex-col justify-center items-center gap-[19px]">

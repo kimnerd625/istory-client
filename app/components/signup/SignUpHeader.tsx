@@ -4,9 +4,15 @@ interface SignUpHeaderProps {
   firstLine: string;
   secondLine: string;
   step: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const SignUpHeader = ({ firstLine, secondLine, step }: SignUpHeaderProps) => {
+const SignUpHeader = ({
+  firstLine,
+  secondLine,
+  step,
+  setStep,
+}: SignUpHeaderProps) => {
   return (
     <div className="w-full flex-col justify-start items-start">
       <h3 className="text-[#1A2128] font-bold text-[26px] leading-8 tracking-tight">
@@ -18,6 +24,7 @@ const SignUpHeader = ({ firstLine, secondLine, step }: SignUpHeaderProps) => {
       <div className="w-full min-h-4" />
       <div className="flex flex-row justify-start items-center gap-x-2">
         <div
+          onClick={() => setStep(1)}
           className={`min-w-[24px] min-h-[24px] flex flex-row justify-center items-center rounded-full ${
             step === 1 ? "bg-black" : "bg-[#E4E4E4]"
           }`}
@@ -31,6 +38,7 @@ const SignUpHeader = ({ firstLine, secondLine, step }: SignUpHeaderProps) => {
           </span>
         </div>
         <div
+          onClick={() => setStep(2)}
           className={`min-w-[24px] min-h-[24px] flex flex-row justify-center items-center rounded-full ${
             step === 2 ? "bg-black" : "bg-[#E4E4E4]"
           }`}
@@ -44,6 +52,7 @@ const SignUpHeader = ({ firstLine, secondLine, step }: SignUpHeaderProps) => {
           </span>
         </div>
         <div
+          onClick={() => setStep(3)}
           className={`min-w-[24px] min-h-[24px] flex flex-row justify-center items-center rounded-full ${
             step === 3 ? "bg-black" : "bg-[#E4E4E4]"
           }`}

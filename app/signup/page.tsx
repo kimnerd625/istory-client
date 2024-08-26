@@ -1,13 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
 import RoleSelect from "../sections/signup/RoleSelect";
 import SecondForm from "../sections/signup/SecondForm";
 import ThirdForm from "../sections/signup/ThirdForm";
-import { toast } from "sonner";
 import Spinner from "../components/Spinner";
 
 export default function SignUpPage() {
+  const router = useRouter();
+
   const [step, setStep] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -49,7 +53,8 @@ export default function SignUpPage() {
       if (!response.ok) {
         throw new Error("회원가입에 실패했습니다.");
       }
-      toast.success("회원가입이 성공적으로 이뤄졌습니다.");
+      toast.success("회원가입에 성공했어요!.");
+      router.push("/login");
     } catch (error) {
       toast.error("회원가입에 실패했습니다.");
     } finally {
