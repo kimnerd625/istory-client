@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import BottomNavigationBar from "./sections/BottomNavigationBar";
 
 interface ApiResponse {
   [key: string]: any;
@@ -63,15 +64,18 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>Data from Java Spring API via Next.js Proxy</h1>
-      {data ? (
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      ) : error ? (
-        <p>Error: {error}</p>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+    <>
+      <div>
+        <h1>Data from Java Spring API via Next.js Proxy</h1>
+        {data ? (
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        ) : error ? (
+          <p>Error: {error}</p>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+      <BottomNavigationBar />
+    </>
   );
 }

@@ -2,6 +2,7 @@ import React from "react";
 import ArchiveHeader from "../components/archive/ArchiveHeader";
 import ArchiveBoard from "../sections/archive/ArchiveBoard";
 import Header from "../sections/Header";
+import BottomNavigationBar from "../sections/BottomNavigationBar";
 
 export default function ArchivePage() {
   return (
@@ -11,6 +12,7 @@ export default function ArchivePage() {
         <ArchiveHeader />
         <ArchiveBoard />
       </main>
+      <BottomNavigationBar />
     </>
   );
 }
