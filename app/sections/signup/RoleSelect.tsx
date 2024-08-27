@@ -61,7 +61,7 @@ const RoleSelect = ({ role, setRole, step, setStep }: RoleSelectProps) => {
             />
           </div>
           <span className="text-[#757575] text-xl font-medium tracking-tight leading-5">
-            자식
+            자녀
           </span>
         </div>
       </div>

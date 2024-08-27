@@ -2,7 +2,7 @@ import React from "react";
 
 interface LongButtonProps {
   buttonText: string;
-  buttonAction?: () => {};
+  buttonAction?: () => void;
   color?: string;
 }
 

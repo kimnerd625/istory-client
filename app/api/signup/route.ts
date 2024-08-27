@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { useEffect } from "react";
 
 export async function POST(request: Request) {
   try {
