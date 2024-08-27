@@ -7,7 +7,7 @@ interface LongButtonProps {
 
 const LongButton = ({ buttonText, buttonAction }: LongButtonProps) => {
   return (
-    <div className="w-full flex flex-row justify-center items-center px-10">
+    <div className="w-full flex flex-row justify-center items-center px-5">
       <button
         onClick={buttonAction}
         className="w-full rounded-2xl py-[18px] flex flex-row justify-center items-center bg-main-400"
