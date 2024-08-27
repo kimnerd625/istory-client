@@ -2,6 +2,7 @@ import React from "react";
 
 import Header from "../sections/Header";
 import MemoryBox from "../sections/box/MemoryBox";
+import BottomNavigationBar from "../sections/BottomNavigationBar";
 
 export default function BoxPage() {
   return (
@@ -10,6 +11,7 @@ export default function BoxPage() {
       <main className="w-full flex-1 flex flex-col justify-start items-center bg-home-bg">
         <MemoryBox />
       </main>
+      <BottomNavigationBar />
     </>
   );
 }
