@@ -2,28 +2,28 @@ import React, { SetStateAction } from "react";
 
 
 interface SummaryInquiryProps {
-  accountName: string;
+  accountNickName: string;
   accountNo: string;
-  accountData: string;
+  totalBalance: string;
   week: number;
   accountCreateDate: string;
   accountExpiryDate: string;
 
 }
 
-const SummaryInquiry = ({ accountName = "우리가족", accountNo="0000000000000", accountData="200000" ,week = 4,  accountCreateDate= "2024.08.10",  accountExpiryDate="2025.07.31" }: SummaryInquiryProps) => {
+const SummaryInquiry = ({ accountNickName = "우리가족", accountNo="0000000000000", totalBalance="200000" ,week = 4,  accountCreateDate= "2024.08.10",  accountExpiryDate="2025.07.31" }: SummaryInquiryProps) => {
 
   return (
     <section className="w-full flex flex-col">
       <div className="summary-inquiry-card p-5 bg-[#F4F6FA] w-full flex flex-col items-center gap-7 justify-center ">
         <div className="flex flex-col justify-center items-center font-light">
           <article className="account-info text-[14px] mb-5">
-            <span className="text-main-600">{accountName}</span>
+            <span className="text-main-600">{accountNickName}</span>
             <span className="text-gray-500">모임</span>
           </article>
           <article className="account-no text-gray-400 text-[14px]"/>신한은행 {accountNo}
           <article className="account-data text-gray-900 font-bold text-[28px]">
-            <span/>{accountData}
+            <span/>{totalBalance}
             <span/>원
           </article>
         </div>
