@@ -3,6 +3,7 @@ import React from "react";
 import Header from "@/app/sections/Header";
 import BoxInfo from "@/app/components/box/BoxInfo";
 import ArchiveDetailCard from "@/app/components/archive/ArchiveDetailCard";
+import BottomNavigationBar from "@/app/sections/BottomNavigationBar";
 
 export default function DetailPage() {
   return (
@@ -12,6 +13,7 @@ export default function DetailPage() {
         <BoxInfo isDateVisible={false} isLabelVisible={false} />
         <ArchiveDetailCard userName="민지" />
       </main>
+      <BottomNavigationBar />
     </>
   );
 }
