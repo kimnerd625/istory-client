@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="kr">
       <body
-        className={`bg-home-bg min-h-screen flex flex-col justify-start items-center ${Pretendard.className}`}
+        className={`bg-home-bg min-h-screen flex flex-col justify-start items-start ${Pretendard.className}`}
       >
         <Toaster richColors position="top-center" />
         {children}
