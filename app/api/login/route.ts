@@ -29,8 +29,14 @@ export async function POST(request: Request) {
     }
 
     if (!response.ok) {
+      // 에러 메시지가 객체일 경우, 문자열로 변환
+      const errorMessage =
+        typeof responseData === "object"
+          ? JSON.stringify(responseData)
+          : responseData;
+
       return NextResponse.json(
-        { error: "Error : " + responseData },
+        { error: "Error: " + errorMessage },
         { status: response.status }
       );
     }

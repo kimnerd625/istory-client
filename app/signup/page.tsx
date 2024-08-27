@@ -44,7 +44,7 @@ export default function SignUpPage() {
           password,
           name,
           phone,
-          genderStr,
+          gender: genderStr,
           birthdate,
           role,
         }),
