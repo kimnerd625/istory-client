@@ -4,47 +4,6 @@ import Image from "next/image";
 import LongButton from "./components/LongButton";
 
 export default function Home() {
-  // const [data, setData] = useState<ApiResponse | null>(null);
-  // const [error, setError] = useState<string | null>(null);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await fetch(
-  //         "http://ec2-52-78-83-122.ap-northeast-2.compute.amazonaws.com:8080/api/v1/user/all",
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           credentials: "include",
-  //         }
-  //       );
-
-  //       if (res.ok) {
-  //         const json: ApiResponse = await res.json();
-  //         setData(json);
-  //       } else {
-  //         const errorResponse = await res.json();
-  //         console.error("Failed to fetch data:", res.statusText);
-  //         console.error("Error details:", errorResponse);
-  //         setError(
-  //           `Failed to fetch data: ${
-  //             res.statusText
-  //           }. Error details: ${JSON.stringify(errorResponse)}`
-  //         );
-  //       }
-  //     } catch (error: any) {
-  //       // error를 any로 처리
-  //       console.error("Error fetching data from Java API:", error);
-
-  //       setError(`Failed to connect to API: ${error.message}`);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
   return (
     <main className="w-full flex-1 flex flex-col justify-between items-center bg-home-bg overflow-x-hidden py-[56px]">
       <section className="w-full flex flex-col justify-center items-center">

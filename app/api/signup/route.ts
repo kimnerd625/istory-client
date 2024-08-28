@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
+import { BASE_URL } from "../BASE_URL";
 
 export async function POST(request: Request) {
   try {
     const { email, password, name, phone, gender, birthdate, role } =
       await request.json();
 
-    const apiUrl =
-      "http://ec2-43-201-221-63.ap-northeast-2.compute.amazonaws.com:8080/api/v1/user/join";
+    const apiUrl = `${BASE_URL}/user/sign-up`;
 
     const response = await fetch(apiUrl, {
       method: "POST",
