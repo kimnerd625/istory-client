@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 
-import { BASE_URL } from "../base_url";
-import { setAccessToken } from "@/app/utils/localAccessToken";
+import { BASE_URL } from "../../base_url";
 
 export async function POST(request: Request) {
   try {
-    const { email, password } = await request.json();
+    const { email, password, name, phone, gender, birthdate, role } =
+      await request.json();
 
-    const apiUrl = `${BASE_URL}/user/login`;
+    const apiUrl = `${BASE_URL}/user/sign-up`;
 
     const response = await fetch(apiUrl, {
       method: "POST",
@@ -18,6 +18,11 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         user_id: email,
         user_pw: password,
+        user_name: name,
+        user_phone: phone,
+        user_gender: gender,
+        user_birth: birthdate,
+        user_type: role,
       }),
     });
 
@@ -31,33 +36,19 @@ export async function POST(request: Request) {
     }
 
     if (!response.ok) {
-      // 에러 메시지가 객체일 경우, 문자열로 변환
-      const errorMessage =
-        typeof responseData === "object"
-          ? JSON.stringify(responseData)
-          : responseData;
-
       return NextResponse.json(
-        { error: "Error: " + errorMessage },
+        { error: "Error: " + responseData },
         { status: response.status }
       );
     }
 
-    const jwtToken = responseData.jwt_token;
-    if (jwtToken) {
-      setAccessToken(jwtToken);
-    }
-
     return NextResponse.json(
-      {
-        message: "로그인이 성공했습니다.",
-        data: responseData,
-      },
+      { message: "회원가입이 성공했습니다.", data: responseData },
       { status: 200 }
     );
   } catch (error: any) {
     return NextResponse.json(
-      { error: "로그인 중 오류가 발생했습니다 : " + error.message },
+      { error: "회원가입 중 오류가 발생했습니다: " + error.message },
       { status: 500 }
     );
   }
