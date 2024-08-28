@@ -9,7 +9,7 @@ import Link from "next/link";
 const BottomNavigationBar = () => {
   return (
     <section className="bg-home-bg fixed bottom-0 w-full flex flex-row justify-between items-center py-4 px-11">
-      <Link href="/">
+      <Link href="/main">
         <div className="flex flex-row justify-center items-center">
           <HomeIcon width={24} height={24} />
         </div>
