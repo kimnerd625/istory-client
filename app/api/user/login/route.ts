@@ -9,16 +9,15 @@ export async function POST(request: Request) {
 
     const apiUrl = `${BASE_URL}/user/login`;
 
+    // FormData 객체 생성 및 데이터 추가
+    const formData = new FormData();
+    formData.append("userId", email);
+    formData.append("userPw", password);
+
     const response = await fetch(apiUrl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       credentials: "include",
-      body: JSON.stringify({
-        user_id: email,
-        user_pw: password,
-      }),
+      body: formData,
     });
 
     const contentType = response.headers.get("Content-Type");

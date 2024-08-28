@@ -16,15 +16,20 @@ export async function POST(request: Request) {
       },
       credentials: "include",
       body: JSON.stringify({
-        user_id: email,
-        user_pw: password,
-        user_name: name,
-        user_phone: phone,
-        user_gender: gender,
-        user_birth: birthdate,
-        user_type: role,
+        userId: email,
+        userPw: password,
+        userName: name,
+        userPhone: phone,
+        userGender: gender,
+        userBirth: birthdate,
+        userType: role,
       }),
     });
+
+    if (response) {
+      console.log(response.body);
+      console.log(response);
+    }
 
     const contentType = response.headers.get("Content-Type");
 
