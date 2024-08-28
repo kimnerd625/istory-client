@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { setAccessToken, getAccessToken } from "@/app/utils/localAccessToken";
-import { BASE_URL } from "../BASE_URL";
+
+import { BASE_URL } from "../base_url";
+import { setAccessToken } from "@/app/utils/localAccessToken";
 
 export async function POST(request: Request) {
   try {
