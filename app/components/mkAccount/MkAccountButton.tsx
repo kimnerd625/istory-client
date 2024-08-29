@@ -50,7 +50,7 @@ const MkCodeButton = ({ userId }: MkCodeButtonProps) => {
       <button
         className="w-full rounded-xl py-[18px] flex flex-row justify-center items-center bg-main-400"
       >
-        <span className="text-xl tracking-tight leading-5 font-extrabold text-white">초대 링크 보내기</span>
+        <span className="text-xl tracking-tight leading-5 font-extrabold text-white">새로운 적금 개설하기</span>
       </button>
     </div>
   );

@@ -10,9 +10,9 @@ interface MakeInviteCodeProps {
 
 const MakeInviteCode = ({}) => {
   return (
-    <main className="w-full flex-1 flex flex-col justify-between items-center bg-home-bg overflow-x-hidden py-[56px]">
+    <main className="w-full flex-1 flex flex-col justify-between items-center">
       <section className="w-full flex flex-col justify-center items-center">
-        <h4 className="text-2xl font-bold text-black tracking-tight leading-5">
+        <h4 className="text-[26px] font-bold text-black tracking-tight leading-5">
           가족들을 초대해보세요!
         </h4>
         <div className="mb-[90px]"></div>
@@ -35,7 +35,7 @@ const MakeInviteCode = ({}) => {
         </div>
       </section>
       <Link
-        href="/login"
+        href="/"
         className="w-full flex flex-row justify-center items-center"
       >
         <MkCodeButton userId=""/>
