@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 
 import { BASE_URL } from "../../base_url";
-import { setAccessToken } from "@/app/utils/localAccessToken";
 
 export async function POST(request: Request) {
   try {
@@ -40,11 +39,6 @@ export async function POST(request: Request) {
         { error: "Error: " + errorMessage },
         { status: response.status }
       );
-    }
-
-    const jwtToken = responseData.jwt_token;
-    if (jwtToken) {
-      setAccessToken(jwtToken);
     }
 
     return NextResponse.json(

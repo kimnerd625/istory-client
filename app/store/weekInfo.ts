@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 interface WeekInfo {
-  weeks: number;
-  info: string;
+  weeklyNum: number;
+  missionContents: string;
 }
 
 interface WeekInfoProps {
@@ -10,19 +10,13 @@ interface WeekInfoProps {
   setWeekInfo: (newInfo: WeekInfo) => void;
 }
 
-const useWeekInfoStore = create<WeekInfoProps>((set)=>({
+const useWeekInfoStore = create<WeekInfoProps>((set) => ({
   weekInfo: null,
 
-  /*
-  { 
-    weeks: number,
-    info: string
-  }
-  */
-  setWeekInfo : (newInfo: WeekInfo) => 
+  setWeekInfo: (newInfo: WeekInfo) =>
     set(() => ({
-      weekInfo: newInfo
-    }))
+      weekInfo: newInfo,
+    })),
 }));
 
 export default useWeekInfoStore;
