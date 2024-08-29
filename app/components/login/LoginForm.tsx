@@ -17,8 +17,6 @@ const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const [hasFamily, setHasFamily] = useState<boolean>(true);
-
   const handleLoginButton = async () => {
     setLoading(true);
     try {
@@ -71,7 +69,7 @@ const LoginForm = () => {
         throw new Error("회원 상태를 불러 오는데, 실패했습니다.");
       }
 
-      // const { hasFamily } = await response.json();
+      const { hasFamily } = await response.json();
 
       if (hasFamily) {
         setTimeout(() => {
