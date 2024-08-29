@@ -1,16 +1,54 @@
-import Image from "next/image";
+import React, { SetStateAction } from "react";
+
 import Link from "next/link";
-import React from "react";
+import Image from "next/image";
+import { toast } from "sonner";
 
 import MkCodeButton from "@/app/components/invite/MkCodeButton";
+import Spinner from "@/app/components/Spinner";
 
 interface MakeInviteCodeProps {
-  
+  step: number;
+  setStep: React.Dispatch<SetStateAction<number>>;
+  loading: boolean;
+  setLoading: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const MakeInviteCode = ({}) => {
+const MakeInviteCode = ({
+  step,
+  setStep,
+  loading,
+  setLoading,
+}: MakeInviteCodeProps) => {
+  const handleButton = async () => {
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/user/createInviteCode", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        throw new Error("초대코드 발급에 실패했습니다.");
+      }
+      toast.success("성공적으로 초대코드를 발급했어요!");
+      // setTimeout(() => {
+      //   setStep(2);
+      // }, 1500);
+    } catch (error) {
+      toast.error("초대코드 발급에 실패했습니다.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="w-full flex-1 flex flex-col justify-between items-center">
+      {loading && <Spinner />}
       <section className="w-full flex flex-col justify-center items-center">
         <h4 className="text-[26px] font-bold text-black tracking-tight leading-5">
           가족들을 초대해보세요!
@@ -25,7 +63,7 @@ const MakeInviteCode = ({}) => {
         </div>
         <div className="mt-10 px-8 flex flex-col justify-center items-center">
           <p className="text-center text-sm font-normal text-[#757575] tracking-tight leading-5">
-            ISTORY를 함께할 
+            ISTORY를 함께할
             <br />
             나의 가족들을 초대하기 위해
             <br />
@@ -34,12 +72,9 @@ const MakeInviteCode = ({}) => {
           </p>
         </div>
       </section>
-      <Link
-        href="/"
-        className="w-full flex flex-row justify-center items-center"
-      >
-        <MkCodeButton userId=""/>
-      </Link>
+      <div className="w-full flex flex-row justify-center items-center">
+        <MkCodeButton handleButton={handleButton} />
+      </div>
     </main>
   );
 };

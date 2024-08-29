@@ -53,8 +53,10 @@ export default function SignUpPage() {
       if (!response.ok) {
         throw new Error("회원가입에 실패했습니다.");
       }
-      toast.success("회원가입에 성공했어요!.");
-      router.push("/login");
+      toast.success("회원가입에 성공했어요!");
+      setTimeout(() => {
+        router.push("/login");
+      }, 1500);
     } catch (error) {
       toast.error("회원가입에 실패했습니다.");
     } finally {
