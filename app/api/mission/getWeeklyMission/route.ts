@@ -1,14 +1,23 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { BASE_URL } from "../../base_url";
-import { getAccessToken } from "@/app/utils/localAccessToken";
 
-export async function GET() {
+export async function POST(req: NextRequest) {
   const apiUrl = `${BASE_URL}/mission/weeklyMission`;
-  const accessToken = getAccessToken();
+
+  const accessToken = req.headers.get("Authorization")?.split(" ")[1];
+
+  console.log(accessToken);
+
+  if (!accessToken) {
+    return NextResponse.json(
+      { error: "Access token is missing" },
+      { status: 401 }
+    );
+  }
 
   try {
     const response = await fetch(apiUrl, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,

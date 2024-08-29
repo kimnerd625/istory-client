@@ -4,7 +4,6 @@ import { BASE_URL } from "../../base_url";
 export async function GET(req: NextRequest) {
   const apiUrl = `${BASE_URL}/user/status`;
 
-  // 요청 헤더에서 accessToken을 가져옵니다.
   const accessToken = req.headers.get("Authorization")?.split(" ")[1];
 
   console.log(accessToken);
