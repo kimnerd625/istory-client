@@ -34,9 +34,9 @@ const LoginForm = () => {
         throw new Error("로그인에 실패했습니다.");
       }
       toast.success("로그인에 성공했어요!");
-      // setTimeout(() => {
-      //   router.push("/main");
-      // }, 2000);
+      setTimeout(() => {
+        router.push("/invite");
+      }, 2000);
     } catch (error) {
       toast.error("로그인에 실패했습니다.");
     } finally {
