@@ -33,7 +33,7 @@ export default function SignUpPage() {
         genderStr = "female";
       }
 
-      const response = await fetch("/api/signup", {
+      const response = await fetch("/api/user/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

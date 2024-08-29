@@ -18,7 +18,7 @@ const LoginForm = () => {
   const handleLoginButton = async () => {
     setLoading(true);
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch("/api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
