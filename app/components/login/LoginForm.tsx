@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { getAccessToken, setAccessToken } from "@/app/utils/localAccessToken";
 
 import LongButton from "../LongButton";
 import Spinner from "../Spinner";
@@ -33,14 +35,53 @@ const LoginForm = () => {
       if (!response.ok) {
         throw new Error("로그인에 실패했습니다.");
       }
+
+      const { data } = await response.json();
+      const jwtToken = data.jwtToken;
+
+      if (jwtToken) {
+        setAccessToken(jwtToken);
+      }
+
       toast.success("로그인에 성공했어요!");
-      setTimeout(() => {
-        router.push("/invite");
-      }, 2000);
+      await getUserStatus();
     } catch (error) {
       toast.error("로그인에 실패했습니다.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const getUserStatus = async () => {
+    const accessToken = getAccessToken();
+    console.log(accessToken);
+
+    try {
+      const response = await fetch("/api/user/getUserStatus", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("회원 상태를 불러 오는데, 실패했습니다.");
+      }
+
+      const { hasFamily } = await response.json();
+
+      if (hasFamily) {
+        setTimeout(() => {
+          router.push("/main");
+        }, 2000);
+      } else {
+        setTimeout(() => {
+          router.push("/invite");
+        }, 2000);
+      }
+    } catch (error) {
+      toast.error("회원 상태를 불러 오는데, 실패했습니다.");
     }
   };
 
