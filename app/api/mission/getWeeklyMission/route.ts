@@ -26,13 +26,13 @@ export async function POST(req: NextRequest) {
     });
 
     if (!response.ok) {
-      console.error("사용자 상태를 가져오는데 실패했습니다.");
+      console.error("미션 정보를 가져오는데 실패했습니다.");
     }
 
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error: any) {
-    console.error("사용자 상태 불러오는데, 문제가 생겼습니다.", error);
+    console.error("미션 정보를 불러오는데, 문제가 생겼습니다.", error);
     return NextResponse.json(
       { error: "Failed to connect to API", message: error.message },
       { status: 500 }

@@ -8,26 +8,17 @@ import AccountCard from "@/app/components/main/AccountCard";
 import BottomNavigationBar from "../sections/BottomNavigationBar";
 import { getAccessToken } from "../utils/localAccessToken";
 import { toast } from "sonner";
-
-const familyMembers = [
-  {
-    userName: "민지",
-    userImageUrl: "/images/user-default2.png",
-    isCompleted: true,
-  },
-  {
-    userName: "지민",
-    userImageUrl: "/images/user-default2.png",
-    isCompleted: false,
-  },
-  {
-    userName: "정국",
-    userImageUrl: "/images/user-default2.png",
-    isCompleted: true,
-  },
-];
+import useWeekInfoStore from "../store/weekInfo";
+interface FamilyMemberProps {
+  userName: string;
+  userImageUrl: string;
+  isCompleted: boolean;
+}
 
 export default function MainPage() {
+  const { weekInfo, setWeekInfo } = useWeekInfoStore();
+  const [familyMembers, setFamilyMembers] = useState<FamilyMemberProps[]>([]); // 배열 타입으로 수정
+
   useEffect(() => {
     const fetchWeeklyMission = async () => {
       const accessToken = getAccessToken();
@@ -43,10 +34,36 @@ export default function MainPage() {
         });
 
         if (!response.ok) {
-          throw new Error("회원 상태를 불러 오는데, 실패했습니다.");
+          throw new Error(
+            "Weekly Mission 관련 정보를 불러 오는데, 실패했습니다. (BE)"
+          );
         }
+
+        const responseData = await response.json();
+
+        // 데이터 매핑
+        const members = responseData.weeklyMission.member.map(
+          (member: any) => ({
+            userName: member.userName,
+            userImageUrl: member.userProfile || "/images/user-default2.png",
+            isCompleted:
+              responseData.weeklyMission.reports[member.userId]?.complete === 1,
+          })
+        );
+
+        console.log(members);
+
+        setFamilyMembers(members);
+
+        setWeekInfo({
+          weeklyNum: responseData.weeklyNum,
+          missionContents: responseData.weeklyMission.missionContents,
+        });
       } catch (error) {
-        toast.error("회원 상태를 불러 오는데, 실패했습니다.");
+        console.error("Error fetching weekly mission:", error);
+        toast.error(
+          "Weekly Mission 관련 정보를 불러 오는데, 실패했습니다. (FE)"
+        );
       }
     };
 
@@ -57,18 +74,19 @@ export default function MainPage() {
     <>
       <Header isUser={true} isCancel={false} isCheck={false} />
       <div className="flex flex-row justify-start">
-        {familyMembers.map((member, index) => (
-          <UsersProfile
-            key={index}
-            userName={member.userName}
-            userImageUrl={member.userImageUrl}
-            isCompleted={member.isCompleted}
-          />
-        ))}
+        {familyMembers &&
+          familyMembers.map((member, index) => (
+            <UsersProfile
+              key={index}
+              userName={member.userName}
+              userImageUrl={member.userImageUrl}
+              isCompleted={member.isCompleted}
+            />
+          ))}
       </div>
       <BoxCard />
       <ArchiveCard />
-      <AccountCard />
+      <AccountCard weeklyMissionNum={weekInfo?.weeklyNum || 1} />
       <BottomNavigationBar />
     </>
   );
