@@ -12,10 +12,9 @@ interface SummaryGuiProps {
 
 
 
-const SummaryGui = ({ accountNickname = "우리가족 사랑해", accountExpiryDate }: SummaryGuiProps) => {
+const SummaryGui = ({ accountNickname = "우리가족 사랑해", accountExpiryDate, week, depositBalance = "4" }: SummaryGuiProps) => {
   const { weekInfo } = useWeekInfoStore();
   let weeks = weekInfo?.weeks ?? 0;
-  let barSize = 50;
   let [Dday, setDday] = useState(0);
   let[targetAmount] = useState(2600000);
 
@@ -30,12 +29,13 @@ const SummaryGui = ({ accountNickname = "우리가족 사랑해", accountExpiryD
   }; 
 
 
-
   useEffect(() => {
     if (accountExpiryDate) {
       setDday(calculateDday(accountExpiryDate));
     }
   }, [accountExpiryDate]);
+
+  const barSize = week * (320 / 52);
 
   return (
     <>
@@ -58,18 +58,22 @@ const SummaryGui = ({ accountNickname = "우리가족 사랑해", accountExpiryD
               진행하고 있어요! <br />
             </span>
 
+            <div className="h-5"></div>
+
             {/* 배경 바 */}
             <div className="w-full h-[10px] bg-[#CADFFF] rounded-[10px] mt-4 relative">
               <div className="gui-box relative">
                 <div className="bar absolute top-0 left-0 h-[10px] bg-[#A3CFFF] rounded-[10px]" style={{ width: `${barSize}px` }}>
-                  <Image
+                  <img
                     src="/images/account-summary-character.png"
                     alt="캐릭터"
-                    width={200}
-                    height={200}
                     className="absolute"
                     style={{
-                      left: `${barSize - 16}px`,
+                      width: '50px !important',
+                      height: '50px',
+                      maxWidth: 'none', // 부모 요소의 영향을 받지 않도록 설정
+                      boxSizing: 'border-box', // 크기 계산 방식을 border-box로 설정
+                      left: `${barSize-31}px`,
                       bottom: '-14px', // 이미지가 바에 맞게 위치하도록 조정
                     }}
                   />
