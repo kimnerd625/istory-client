@@ -6,9 +6,10 @@ import crypto from "crypto"; // Node.js의 crypto 모듈을 사용하여 SHA-256
 
 interface MkCodeButtonProps {
   handleButton: () => void;
+  userId : string;
 }
 
-const MkCodeButton = ({ handleButton }: MkCodeButtonProps) => {
+const MkCodeButton = ({ handleButton, userId }: MkCodeButtonProps) => {
   return (
     <div className="w-full flex flex-row justify-center items-center px-5">
       <button
