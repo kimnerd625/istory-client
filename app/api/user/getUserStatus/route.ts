@@ -5,6 +5,9 @@ export async function GET(req: NextRequest) {
   const apiUrl = `${BASE_URL}/user/status`;
 
   const accessToken = req.headers.get("Authorization")?.split(" ")[1];
+
+  console.log(accessToken);
+
   if (!accessToken) {
     return NextResponse.json(
       { error: "Access token is missing" },

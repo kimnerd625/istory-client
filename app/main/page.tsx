@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { toast } from "sonner";
 
 import useWeekInfoStore from "../store/weekInfo";
@@ -57,14 +56,12 @@ export default function MainPage() {
           })
         );
 
-        console.log(members);
-
         setFamilyMembers(members);
-
         setWeekInfo({
           weeklyNum: responseData.weeklyNum,
           missionContents: responseData.weeklyMission.missionContents,
           familymissionNo: responseData.weeklyMission.familymissionNo,
+          showCheck: responseData.showCheck,
         });
       } catch (error) {
         console.error("Error fetching weekly mission:", error);
