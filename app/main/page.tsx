@@ -64,6 +64,7 @@ export default function MainPage() {
         setWeekInfo({
           weeklyNum: responseData.weeklyNum,
           missionContents: responseData.weeklyMission.missionContents,
+          familymissionNo: responseData.weeklyMission.familymissionNo,
         });
       } catch (error) {
         console.error("Error fetching weekly mission:", error);
