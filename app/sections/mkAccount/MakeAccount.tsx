@@ -14,11 +14,7 @@ const MakeAccount = ({ step, setStep }: MakeAccountProps) => {
     <main className="w-full flex-1 flex flex-col justify-between items-center">
       <section className="w-full flex flex-col justify-center items-center pr-5 pl-5">
         <div className="flex flex-col justify-center items-center">
-          {" "}
-          {/* 추가된 items-center */}
           <div className="flex flex-col items-center justify-center font-bold text-[26px] leading-8 tracking-tight">
-            {" "}
-            {/* text-center 추가 */}
             <div>
               <span className="text-main-600">신한 ISTORY</span> 에<br />
             </div>
@@ -44,7 +40,7 @@ const MakeAccount = ({ step, setStep }: MakeAccountProps) => {
           </p>
         </div>
       </section>
-      <MkAccountButton userId="" />
+      <MkAccountButton setStep={setStep} />
     </main>
   );
 };

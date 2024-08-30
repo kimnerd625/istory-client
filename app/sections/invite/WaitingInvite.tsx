@@ -51,7 +51,6 @@ const WaitingInvite = ({
   useEffect(() => {
     const getUserStatus = async () => {
       const accessToken = getAccessToken();
-      console.log(accessToken);
 
       try {
         const response = await fetch("/api/user/getUserStatus", {

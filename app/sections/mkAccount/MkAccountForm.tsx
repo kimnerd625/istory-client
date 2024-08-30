@@ -1,14 +1,20 @@
-import React from "react";
-import Link from "next/link";
+"use client";
 
-import SignUpHeader from "@/app/components/signup/SignUpHeader";
-import NextButton from "@/app/components/signup/NextButton";
+import { toast } from "sonner";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+
+import { getAccessToken } from "@/app/utils/localAccessToken";
+
+import Spinner from "@/app/components/Spinner";
+
+import RightIcon from "@/public/icons/icon-chevron-right.svg";
 
 interface MkAccountFromProps {
   accountNickname: string;
   setAccountNickname: React.Dispatch<React.SetStateAction<string>>;
-  
-  depositBalance : string;
+
+  depositBalance: string;
   setDepositBalance: React.Dispatch<React.SetStateAction<string>>;
 
   paymentBalance: string;
@@ -41,34 +47,82 @@ const MkAccountFrom = ({
   withdrawalAccountNo,
   setWithdrawalAccountNo,
 }: MkAccountFromProps) => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [faList, setFaList] = useState<string[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // 모달 상태 추가
+  const [selectedAccount, setSelectedAccount] = useState<string | null>(null); // 선택된 계좌 상태 추가
+
+  useEffect(() => {
+    const getFrequentList = async () => {
+      const accessToken = getAccessToken();
+
+      try {
+        const response = await fetch("/api/account/getFrequentAccount", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        const responseData = await response.json();
+
+        if (responseData) {
+          setFaList(responseData.accountNoList);
+        } else {
+          throw new Error("수시 입출금 계좌 목록을 불러 오는데, 실패했습니다.");
+        }
+      } catch (error) {
+        toast.error("수시 입출금 계좌 목록을 불러 오는데, 실패했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getFrequentList();
+  }, []);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true); // 모달 열기
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // 모달 닫기
+  };
+
+  const handleSelectAccount = (accountNo: string) => {
+    setSelectedAccount(accountNo); // 선택된 계좌 설정
+    setIsModalOpen(false); // 모달 닫기
+  };
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <section className="w-full flex-1 flex flex-col justify-between items-center">
       <div className="w-full flex flex-col justify-center items-start gap-y-4">
         <div className="w-full flex flex-row justify-between items-center gap-y-2">
-          {/* 적금 계좌 이름  */}
           <label
             htmlFor="accountNickname"
-            className="text-base font-semibold text-[#1A2128] tracking-tight leading-4"
+            className="text-base font-medium text-[#1A2128] tracking-tight leading-5"
           >
             적금 계좌 이름
           </label>
-          <div className="flex flex-row justify-between items-center gap-x-[7px]">
-            <input
-              key="accountNicknameinput"
-              type="text"
-              id="accountNickname"
-              value={accountNickname}
-              onChange={(e) => setAccountNickname(e.target.value)}
-              placeholder="예시: 울가족 사랑해"
-              className="w-full px-[14px] py-[13px] rounded-lg bg-[#E4E4E4] focus:outline-none focus:bg-main-300"
-            />
-          </div>
+          <input
+            key="accountNicknameinput"
+            type="text"
+            id="accountNickname"
+            value={accountNickname}
+            onChange={(e) => setAccountNickname(e.target.value)}
+            placeholder="예시: 울가족 사랑해"
+            className="px-[14px] py-[13px] rounded-lg bg-[#E4E4E4] focus:outline-none focus:bg-main-300 w-[150px]"
+          />
         </div>
-        {/* 매주 납입 금액 */}
         <div className="w-full flex flex-row justify-between items-center gap-y-2">
           <label
             htmlFor="depositBalance"
-            className="text-base font-semibold text-[#1A2128] tracking-tight leading-4"
+            className="text-base font-medium text-[#1A2128] tracking-tight leading-5"
           >
             매주 납입 금액
           </label>
@@ -80,76 +134,100 @@ const MkAccountFrom = ({
               value={paymentBalance}
               onChange={(e) => setPaymentBalance(e.target.value)}
               placeholder="원"
-              className="w-full px-[14px] py-[13px] rounded-lg bg-[#E4E4E4] focus:outline-none focus:bg-main-300"
+              className="w-[150px] px-[14px] py-[13px] rounded-lg bg-[#E4E4E4] focus:outline-none focus:bg-main-300"
             />
           </div>
         </div>
-        {/* 적금 기간 */}
         <div className="w-full flex flex-row justify-between items-center gap-y-2">
           <label
             htmlFor="depositBalance"
-            className="text-base font-semibold text-[#1A2128] tracking-tight leading-4"
+            className="text-base font-medium text-[#1A2128] tracking-tight leading-5"
           >
-            적금 기간 
+            적금 기간
           </label>
           <div className="flex flex-row justify-between items-center gap-x-[7px]">
-            <div className=" text-base w-full px-[14px] py-[13px] rounded-lg ">
-              52 주 
+            <div className="text-base w-[150px] px-[14px] py-[13px] rounded-lg ">
+              52 주
             </div>
           </div>
         </div>
-        {/* 적금 요일 */}
         <div className="w-full flex flex-row justify-between items-center gap-y-2">
           <label
             htmlFor="paymentDate"
-            className="text-base font-semibold text-[#1A2128] tracking-tight leading-4"
+            className="text-base font-medium text-[#1A2128] tracking-tight leading-5"
           >
-            적금 요일 
+            적금 요일
           </label>
-          <div className="flex flex-row justify-between items-center gap-x-[7px]">
-            <input
-              key="depositBalanceinput"
-              type="text"
-              id="depositBalance"
-              value={paymentDate}
-              onChange={(e) => setPaymentDate(e.target.value)}
-              placeholder="요일"
-              className="w-full px-[14px] py-[13px] rounded-lg bg-[#E4E4E4] focus:outline-none focus:bg-main-300"
-            />
-          </div>
+          <input
+            key="depositBalanceinput"
+            type="text"
+            id="depositBalance"
+            value={paymentDate}
+            onChange={(e) => setPaymentDate(e.target.value)}
+            placeholder="요일"
+            className="w-[150px] px-[14px] py-[13px] rounded-lg bg-[#E4E4E4] focus:outline-none focus:border-none focus:bg-main-300"
+          />
         </div>
-        {/* 최고 적용 금리 */}
         <div className="w-full flex flex-row justify-between items-center gap-y-2">
           <label
             htmlFor="depositBalance"
-            className="text-base font-semibold text-[#1A2128] tracking-tight leading-4"
+            className="text-base font-medium text-[#1A2128] tracking-tight leading-5"
           >
-           최고 적용 금리  
+            최고 적용 금리
           </label>
           <div className="flex flex-row justify-between items-center gap-x-[7px]">
-            <div className=" text-base w-full px-[14px] py-[13px] rounded-lg ">
-              4.8 % 
+            <div className="text-base w-[150px] px-[14px] py-[13px] rounded-lg ">
+              4.8 %
             </div>
           </div>
         </div>
 
-        {/* 연결계좌 */}
-        <div className="w-full flex flex-row justify-between items-center bg-[#E4E4E4] rounded-[12px]">
+        <div
+          onClick={handleOpenModal}
+          className="w-full flex flex-row justify-between items-center bg-[#E4E4E4] rounded-[12px]"
+        >
           <div className="w-full flex flex-row justify-between items-center px-7 h-[80px]">
             <span>연결 계좌</span>
-            <div>
+            <div className="flex items-center gap-1">
               <span>등록하기</span>
-              <img src="/image/right-angle-gray.tsx" alt="" />
+              <RightIcon width={16} height={16} />
             </div>
           </div>
         </div>
-
         <div className="h-[61px]"> </div>
       </div>
-      <Link href="/" className="w-full flex flex-row justify-center items-center">
-        <button
-        // onClick={() => handleClickNextButton()}
-        className="bg-main-400 rounded-xl w-full flex flex-col justify-center items-center font-extrabold text-white text-xl leading-5 tracking-tight py-[18px]">
+
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg p-6 w-[300px]">
+            <h2 className="text-xl font-bold mb-4">계좌 선택</h2>
+            <ul>
+              {faList.map((accountNo) => (
+                <li key={accountNo} className="mb-2">
+                  <button
+                    onClick={() => handleSelectAccount(accountNo)}
+                    className="text-blue-500 hover:underline"
+                  >
+                    {accountNo}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={handleCloseModal}
+              className="mt-4 bg-[#FFAD3E] text-white rounded px-4 py-2"
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+      )}
+
+      <Link
+        href="/"
+        className="w-full flex flex-row justify-center items-center"
+      >
+        <button className="bg-main-400 rounded-xl w-full flex flex-col justify-center items-center font-extrabold text-white text-xl leading-5 tracking-tight py-[18px]">
           다&nbsp;&nbsp;&nbsp;음
         </button>
       </Link>
