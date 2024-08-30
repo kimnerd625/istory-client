@@ -5,6 +5,8 @@ interface BoxInfoProps {
   isLabelVisible?: boolean;
   contents?: string;
   weeklyNum?: number;
+  startDate?: string;
+  endDate?: string;
 }
 
 const BoxInfo = ({
@@ -12,6 +14,8 @@ const BoxInfo = ({
   isLabelVisible = true,
   contents = "오늘은 식목일입니다./모두 식물 하나 심어 볼까요?",
   weeklyNum = 1,
+  startDate = "2024-08-31",
+  endDate = "2024-09-06",
 }: BoxInfoProps) => {
   const insertBreaks = (text: string) => {
     return text.split("/ ").map((part, index) => (
@@ -21,6 +25,16 @@ const BoxInfo = ({
       </React.Fragment>
     ));
   };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Add leading zero if needed
+    const day = String(date.getDate()).padStart(2, "0"); // Add leading zero if needed
+    return `${month}.${day}`;
+  };
+
+  const formattedStartDate = startDate ? formatDate(startDate) : "";
+  const formattedEndDate = endDate ? formatDate(endDate) : "";
 
   return (
     <section className="w-full flex flex-col justify-start items-start gap-y-5">
@@ -38,7 +52,7 @@ const BoxInfo = ({
         {isDateVisible && (
           <div className="w-full flex flex-row justify-start items-center gap-x-2">
             <span className="font-normal text-sm text-[#B3B3B3] tracking-tight leading-5">
-              08.12 - 08.17
+              {formattedStartDate} - {formattedEndDate}
             </span>
             <div className="bg-[#B3B3B3] rounded-lg px-2 py-1 flex flex-row justify-center items-center">
               <span className="font-normal text-[10px] text-white tracking-tight leading-3">

@@ -52,9 +52,9 @@ export default function MainPage() {
         const members = responseData.weeklyMission.member.map(
           (member: any) => ({
             userName: member.userName,
-            userImageUrl:
-              `http://ec2-43-201-221-63.ap-northeast-2.compute.amazonaws.com:8080/api/v1/file/image?systemname=${member.userProfile}` ||
-              "/images/profile-mom.jpg",
+            userImageUrl: member.userProfile
+              ? `http://ec2-43-201-221-63.ap-northeast-2.compute.amazonaws.com:8080/api/v1/file/image?systemname=${member.userProfile}`
+              : "/images/profile-mom.jpg", // Default profile image when member.userProfile is empty
             isCompleted:
               responseData.weeklyMission.reports[member.userId]?.complete === 1,
           })
@@ -67,6 +67,8 @@ export default function MainPage() {
           missionContents: responseData.weeklyMission.missionContents,
           familymissionNo: responseData.weeklyMission.familymissionNo,
           showCheck: responseData.showCheck,
+          startDate: responseData.registDate,
+          endDate: responseData.expirationDate,
         });
       } catch (error) {
         console.error("Error fetching weekly mission:", error);

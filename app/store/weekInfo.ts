@@ -5,6 +5,8 @@ interface WeekInfo {
   missionContents: string;
   familymissionNo: string;
   showCheck: boolean;
+  startDate: string;
+  endDate: string;
 }
 
 interface WeekInfoProps {

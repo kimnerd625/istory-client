@@ -1,10 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { BASE_URL } from "../../base_url";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const { email, famillymissionNo, thoughts } = await request.json();
+    const { familymissionNo, thoughts } = await request.json();
+    const apiUrl = `${BASE_URL}/mission/report`;
 
     const accessToken = request.headers.get("Authorization")?.split(" ")[1];
     if (!accessToken) {
@@ -14,8 +15,6 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiUrl = `${BASE_URL}/mission/report`;
-
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -24,9 +23,9 @@ export async function POST(request: Request) {
       },
       credentials: "include",
       body: JSON.stringify({
-        user: { userId: email },
-        familymissionNo: famillymissionNo,
-        thoughts: thoughts,
+        familymissionNo: parseInt(familymissionNo),
+        thoughts: { thoughts },
+        complete: "2",
       }),
     });
 
@@ -38,21 +37,23 @@ export async function POST(request: Request) {
     } else {
       responseData = await response.text();
     }
-
-    if (!response.ok) {
+    if (responseData.errorCode) {
       return NextResponse.json(
-        { error: "Error: " + responseData },
-        { status: response.status }
+        {
+          error: `설정한 에러: ${responseData.errorCode}`,
+          detail: responseData,
+        },
+        { status: 400 }
       );
     }
 
     return NextResponse.json(
-      { message: "미션 소감이 성공적으로 등록되었습니다.", data: responseData },
+      { message: "소감을 성공적으로 등록했습니다.", data: responseData },
       { status: 200 }
     );
   } catch (error: any) {
     return NextResponse.json(
-      { error: "미션 소감 등록이 실패했습니다: " + error.message },
+      { error: "소감 등록에 실패했습니다: " + error.message },
       { status: 500 }
     );
   }
