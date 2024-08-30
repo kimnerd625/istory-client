@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import crypto from "crypto"; // Node.js의 crypto 모듈을 사용하여 SHA-256 해싱을 처리합니다.
 
 interface MkCodeButtonProps {
-  handleButton: () => void;
-  userId : string;
+  handleButton?: () => void;
+  userId?: string;
 }
 
-const MkCodeButton = ({ handleButton, userId }: MkCodeButtonProps) => {
+const MkCodeButton = ({ handleButton=()=>{}, userId }: MkCodeButtonProps) => {
   return (
     <div className="w-full flex flex-row justify-center items-center px-5">
       <button
