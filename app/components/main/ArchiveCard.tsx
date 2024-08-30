@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+import ArchiveIcon from "@/public/icons/icon-archive-arrow.svg";
+
 const BoxCard = () => {
   return (
     <Link
@@ -17,11 +19,18 @@ const BoxCard = () => {
           quality={100}
         />
       </div>
-      <span className="absolute p-5 right-0 pr-10 text-gray-600 font-semibold text-xl">
+      <span className="absolute p-5 right-0 pr-10 text-gray-600 font-bold text-xl tracking-tight text-right">
         차곡 차곡
         <br />
         아카이브
       </span>
+      <div className="flex flex-row justify-center items-center">
+        <ArchiveIcon
+          width={50}
+          height={50}
+          className="absolute bottom-3 left-[150px]"
+        />
+      </div>
     </Link>
   );
 };

@@ -3,6 +3,7 @@ import { create } from "zustand";
 interface WeekInfo {
   weeklyNum: number;
   missionContents: string;
+  familymissionNo: string;
 }
 
 interface WeekInfoProps {
