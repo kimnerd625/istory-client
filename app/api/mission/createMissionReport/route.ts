@@ -6,12 +6,21 @@ export async function POST(request: Request) {
   try {
     const { email, famillymissionNo, thoughts } = await request.json();
 
+    const accessToken = request.headers.get("Authorization")?.split(" ")[1];
+    if (!accessToken) {
+      return NextResponse.json(
+        { error: "Access token is missing" },
+        { status: 401 }
+      );
+    }
+
     const apiUrl = `${BASE_URL}/mission/report`;
 
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
       credentials: "include",
       body: JSON.stringify({
