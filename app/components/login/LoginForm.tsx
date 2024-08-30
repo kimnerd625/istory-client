@@ -9,9 +9,11 @@ import { getAccessToken, setAccessToken } from "@/app/utils/localAccessToken";
 
 import LongButton from "../LongButton";
 import Spinner from "../Spinner";
+import useLoginInfoStore from "@/app/store/loginInfo";
 
 const LoginForm = () => {
   const router = useRouter();
+  const { loginInfo, setLoginInfo } = useLoginInfoStore();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
@@ -38,6 +40,10 @@ const LoginForm = () => {
 
       const { data } = await response.json();
       const jwtToken = data.jwtToken;
+      setLoginInfo({
+        userId: data.userId,
+        isRepresentative: data.isRepresentative,
+      });
 
       if (jwtToken) {
         setAccessToken(jwtToken);
