@@ -4,7 +4,7 @@ import { BASE_URL } from "../../base_url";
 
 export async function POST(request: NextRequest) {
   try {
-    const { famillymissionNo } = await request.json();
+    const { familymissionNo } = await request.json();
     const apiUrl = `${BASE_URL}/mission/report`;
 
     const accessToken = request.headers.get("Authorization")?.split(" ")[1];
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       },
       credentials: "include",
       body: JSON.stringify({
-        familymissionNo: famillymissionNo,
+        familymissionNo: parseInt(familymissionNo),
         thoughts: "",
         complete: "1",
       }),
