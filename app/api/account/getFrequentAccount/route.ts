@@ -1,19 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { BASE_URL } from "../../base_url";
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
   //---------------------------------------------------
   // URL
   const apiUrl = `${BASE_URL}/user/account`;
-  //---------------------------------------------------
-  // Parameters
-  const { inviteCode } = await request.json();
-  if (!inviteCode) {
-    return NextResponse.json(
-      { error: "FE: 중간 서버 단에 들어오는 인자가 빠졌습니다." },
-      { status: 400 }
-    );
-  }
   //---------------------------------------------------
   // AccessToken
   const accessToken = request.headers.get("Authorization")?.split(" ")[1];
