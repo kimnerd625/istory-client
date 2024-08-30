@@ -20,7 +20,7 @@ export default function InvitePage() {
         loading={loading}
         setLoading={setLoading}
       />
-      {/* <WaitingInvite/> */}
+      {/* <WaitingInvite /> */}
     </main>
   );
 }
