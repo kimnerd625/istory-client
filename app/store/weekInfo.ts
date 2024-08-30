@@ -4,6 +4,7 @@ interface WeekInfo {
   weeklyNum: number;
   missionContents: string;
   familymissionNo: string;
+  showCheck: boolean;
 }
 
 interface WeekInfoProps {

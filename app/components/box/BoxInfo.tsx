@@ -4,12 +4,14 @@ interface BoxInfoProps {
   isDateVisible: boolean;
   isLabelVisible?: boolean;
   contents?: string;
+  weeklyNum?: number;
 }
 
 const BoxInfo = ({
   isDateVisible,
   isLabelVisible = true,
-  contents = "오늘은 식목일입니다./ 가족과 함께 산책을 나가보세요.",
+  contents = "오늘은 식목일입니다./모두 식물 하나 심어 볼까요?",
+  weeklyNum = 1,
 }: BoxInfoProps) => {
   const insertBreaks = (text: string) => {
     return text.split("/ ").map((part, index) => (
@@ -40,7 +42,7 @@ const BoxInfo = ({
             </span>
             <div className="bg-[#B3B3B3] rounded-lg px-2 py-1 flex flex-row justify-center items-center">
               <span className="font-normal text-[10px] text-white tracking-tight leading-3">
-                5주차
+                {weeklyNum}주차
               </span>
             </div>
           </div>

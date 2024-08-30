@@ -28,8 +28,7 @@ export async function POST(request: Request) {
       responseData = await response.text();
     }
 
-    if (!response.ok) {
-      // 에러 메시지가 객체일 경우, 문자열로 변환
+    if (!responseData.result) {
       const errorMessage =
         typeof responseData === "object"
           ? JSON.stringify(responseData)

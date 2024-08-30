@@ -1,10 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { BASE_URL } from "../../base_url";
 import { getAccessToken } from "@/app/utils/localAccessToken";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   const apiUrl = `${BASE_URL}/user/sigle-inquire`;
-  const accessToken = getAccessToken();
+  const accessToken = request.headers.get("Authorization")?.split(" ")[1];
+  if (!accessToken) {
+    return NextResponse.json(
+      { error: "Access token is missing" },
+      { status: 401 }
+    );
+  }
 
   try {
     const response = await fetch(apiUrl, {

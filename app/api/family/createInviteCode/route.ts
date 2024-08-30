@@ -1,10 +1,19 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { BASE_URL } from "../../base_url";
-import { getAccessToken } from "@/app/utils/localAccessToken";
 
-export async function POST() {
+export async function POST(request: NextRequest) {
   const apiUrl = `${BASE_URL}/family/invite-code`;
-  const accessToken = getAccessToken();
+
+  const accessToken = request.headers.get("Authorization")?.split(" ")[1];
+
+  console.log(accessToken);
+
+  if (!accessToken) {
+    return NextResponse.json(
+      { error: "Access token is missing" },
+      { status: 401 }
+    );
+  }
 
   try {
     const response = await fetch(apiUrl, {
@@ -14,7 +23,6 @@ export async function POST() {
         Authorization: `Bearer ${accessToken}`,
       },
       credentials: "include",
-      body: "",
     });
 
     if (!response.ok) {
