@@ -4,7 +4,7 @@ import useWeekInfoStore from "@/app/store/weekInfo";
 
 interface SummaryGuiProps {
   accountNickname: string;
-  week: number;
+  weeklyNum: number;
   accountExpiryDate: string;
   depositBalance: string;
 
@@ -12,9 +12,9 @@ interface SummaryGuiProps {
 
 
 
-const SummaryGui = ({ accountNickname = "우리가족 사랑해", accountExpiryDate, week, depositBalance = "4" }: SummaryGuiProps) => {
+const SummaryGui = ({ accountNickname = "우리가족 사랑해", accountExpiryDate, weeklyNum, depositBalance = "4" }: SummaryGuiProps) => {
   const { weekInfo } = useWeekInfoStore();
-  let weeks = weekInfo?.weeks ?? 0;
+  let week = weekInfo?.weeklyNum ?? 0;
   let [Dday, setDday] = useState(0);
   let[targetAmount] = useState(2600000);
 
@@ -54,7 +54,7 @@ const SummaryGui = ({ accountNickname = "우리가족 사랑해", accountExpiryD
 
             <span className="text-[#1A2128] font-pretendard text-[20px] font-semibold leading-[25px] tracking-[-0.5px]">
               지금까지 <br />
-              <span>{weeks}</span><span>주 째</span><br />
+              <span>{week}</span><span>주 째</span><br />
               진행하고 있어요! <br />
             </span>
 
