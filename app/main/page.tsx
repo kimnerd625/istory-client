@@ -52,9 +52,9 @@ export default function MainPage() {
         const members = responseData.weeklyMission.member.map(
           (member: any) => ({
             userName: member.userName,
-            userImageUrl: (member.userProfile = ""
-              ? `http://ec2-43-201-221-63.ap-northeast-2.compute.amazonaws.com:8080/api/v1/file/image?systemname=${member.userProfile}`
-              : "/images/profile-mom.jpg"),
+            userImageUrl:
+              `http://ec2-43-201-221-63.ap-northeast-2.compute.amazonaws.com:8080/api/v1/file/image?systemname=${member.userProfile}` ||
+              "/images/profile-mom.jpg",
             isCompleted:
               responseData.weeklyMission.reports[member.userId]?.complete === 1,
           })

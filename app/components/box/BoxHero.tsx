@@ -9,7 +9,7 @@ import Spinner from "../Spinner";
 const EFDiary = localFont({ src: "../../../public/fonts/EFDiary.ttf" });
 
 const BoxHero = () => {
-  const { weekInfo } = useWeekInfoStore();
+  const { weekInfo, setWeekInfo } = useWeekInfoStore(); // 상태 업데이트 함수 추가
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const weeklyNum = weekInfo?.weeklyNum ?? 1;
@@ -19,6 +19,7 @@ const BoxHero = () => {
     setIsLoading(true);
 
     try {
+      // 추억 상자 열기 요청
       const response = await fetch("/api/mission/openBox", {
         method: "POST",
         headers: {
@@ -32,7 +33,32 @@ const BoxHero = () => {
       if (!response.ok) {
         throw new Error("추억 상자 열기에 실패했습니다.");
       }
+
+      // 추억 상자 열기 성공 메시지
       toast.success("추억 상자가 성공적으로 열렸습니다!");
+
+      // 최신 상태 요청
+      const statusResponse = await fetch("/api/mission/getWeeklyMission", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      if (!statusResponse.ok) {
+        throw new Error("최신 상태를 불러오는 데 실패했습니다.");
+      }
+
+      const statusData = await statusResponse.json();
+
+      // 최신 상태로 weekInfo 업데이트
+      setWeekInfo({
+        weeklyNum: statusData.weeklyNum,
+        missionContents: statusData.weeklyMission.missionContents,
+        familymissionNo: statusData.weeklyMission.familymissionNo,
+        showCheck: statusData.showCheck,
+      });
     } catch (error) {
       toast.error("추억 상자를 열지 못했습니다.");
     } finally {
