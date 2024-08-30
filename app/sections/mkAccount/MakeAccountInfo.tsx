@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import MkAccountForm from "@/app/sections/mkAccount/MkAccountForm";
 import UserCard from "@/app/components/invite/UserCard";
 
-interface MkAccountButtonInfoProps {}
+interface MkAccountButtonInfoProps {
+  step: number;
+  setStep: React.Dispatch<SetStateAction<number>>;
+}
 
-const MkAccountButtonInfo = () => {
+const MkAccountButtonInfo = ({ step, setStep }: MkAccountButtonInfoProps) => {
   // MkAccountForm에서 필요한 모든 상태와 setter 함수 정의
   const [accountNickname, setAccountNickname] = useState<string>("");
   const [depositBalance, setDepositBalance] = useState<string>("");
   const [withdrawalBankCode, setWithdrawalBankCode] = useState<string>("");
   const [withdrawalBankName, setWithdrawalBankName] = useState<string>("");
   const [withdrawalAccountNo, setWithdrawalAccountNo] = useState<string>("");
-  const [paymentBalance, setPaymentBalance] = useState<string>(""); 
-  const [paymentDate, setPaymentDate] = useState<string>(""); 
+  const [paymentBalance, setPaymentBalance] = useState<string>("");
+  const [paymentDate, setPaymentDate] = useState<string>("");
 
   return (
     <section className="w-full flex-1 flex flex-col justify-between items-center">
@@ -25,22 +28,16 @@ const MkAccountButtonInfo = () => {
         <MkAccountForm
           accountNickname={accountNickname}
           setAccountNickname={setAccountNickname}
-
           depositBalance={depositBalance}
           setDepositBalance={setDepositBalance}
-
           paymentBalance={paymentBalance}
           setPaymentBalance={setPaymentBalance}
-
           paymentDate={paymentDate}
           setPaymentDate={setPaymentDate}
-
           withdrawalBankCode={withdrawalBankCode}
           setWithdrawalBankCode={setWithdrawalBankCode}
-
           withdrawalBankName={withdrawalBankName}
           setWithdrawalBankName={setWithdrawalBankName}
-
           withdrawalAccountNo={withdrawalAccountNo}
           setWithdrawalAccountNo={setWithdrawalAccountNo}
         />

@@ -51,7 +51,6 @@ const WaitingInvite = ({
   useEffect(() => {
     const getUserStatus = async () => {
       const accessToken = getAccessToken();
-      console.log(accessToken);
 
       try {
         const response = await fetch("/api/user/getUserStatus", {
@@ -136,7 +135,12 @@ const WaitingInvite = ({
               className="flex flex-row flex-wrap justify-center gap-5 w-[220px]"
             >
               {group.map((member) => (
-                <UserCard key={member.userId} name={member.userName} />
+                <UserCard
+                  key={member.userId}
+                  userId={member.userId}
+                  name={member.userName}
+                  inviteCode={inviteCode}
+                />
               ))}
             </div>
           ))}
