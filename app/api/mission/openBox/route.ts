@@ -37,11 +37,13 @@ export async function POST(request: NextRequest) {
     } else {
       responseData = await response.text();
     }
-
-    if (!response.ok) {
+    if (responseData.errorCode) {
       return NextResponse.json(
-        { error: "Error: " + responseData },
-        { status: response.status }
+        {
+          error: `설정한 에러: ${responseData.errorCode}`,
+          detail: responseData,
+        },
+        { status: 400 }
       );
     }
 
