@@ -7,6 +7,9 @@ import NextButton from "@/app/components/signup/NextButton";
 interface MkAccountFromProps {
   accountNickname: string;
   setAccountNickname: React.Dispatch<React.SetStateAction<string>>;
+  
+  depositBalance : string;
+  setDepositBalance: React.Dispatch<React.SetStateAction<string>>;
 
   paymentBalance: string;
   setPaymentBalance: React.Dispatch<React.SetStateAction<string>>;
