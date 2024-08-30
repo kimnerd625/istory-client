@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ["ec2-43-201-221-63.ap-northeast-2.compute.amazonaws.com"],
+  },
   reactStrictMode: true,
   webpack: (config) => {
     config.module.rules.push({

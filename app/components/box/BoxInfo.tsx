@@ -3,13 +3,13 @@ import React from "react";
 interface BoxInfoProps {
   isDateVisible: boolean;
   isLabelVisible?: boolean;
-  contents?: string;
+  contents: string;
 }
 
 const BoxInfo = ({
   isDateVisible,
   isLabelVisible = true,
-  contents = "오늘은 식목일입니다./ 가족과 함께 산책을 나가보세요.",
+  contents,
 }: BoxInfoProps) => {
   const insertBreaks = (text: string) => {
     return text.split("/ ").map((part, index) => (

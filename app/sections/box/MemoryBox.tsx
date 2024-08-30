@@ -12,6 +12,7 @@ import Loading from "@/app/loading";
 const MemoryBox = () => {
   const { weekInfo } = useWeekInfoStore();
   const [showCheck, setShowCheck] = useState<boolean | null>(null);
+  const [contents, setContents] = useState<string>("");
 
   // weekInfo가 변경될 때마다 showCheck를 업데이트
   useEffect(() => {
@@ -28,7 +29,7 @@ const MemoryBox = () => {
   // showCheck에 따른 렌더링
   return showCheck ? (
     <div className="w-full px-5 py-7 flex flex-col justify-start items-center gap-y-9">
-      <BoxInfo isDateVisible={true} />
+      <BoxInfo isDateVisible={true} contents={contents} />
       <section className="w-full flex flex-col justify-center items-center">
         <MissionCard
           userName="민지"

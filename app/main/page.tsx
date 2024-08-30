@@ -14,6 +14,7 @@ import AccountCard from "@/app/components/main/AccountCard";
 import BottomNavigationBar from "../sections/BottomNavigationBar";
 
 import CompassIcon from "@/public/icons/icon-compass.svg";
+import Loading from "../loading";
 
 interface FamilyMemberProps {
   userName: string;
@@ -23,7 +24,8 @@ interface FamilyMemberProps {
 
 export default function MainPage() {
   const { weekInfo, setWeekInfo } = useWeekInfoStore();
-  const [familyMembers, setFamilyMembers] = useState<FamilyMemberProps[]>(); // 배열 타입으로 수정
+  const [familyMembers, setFamilyMembers] = useState<FamilyMemberProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true); // 로딩 상태 추가
 
   useEffect(() => {
     const fetchWeeklyMission = async () => {
@@ -50,13 +52,16 @@ export default function MainPage() {
         const members = responseData.weeklyMission.member.map(
           (member: any) => ({
             userName: member.userName,
-            userImageUrl: member.userProfile || "/images/profile-mom.jpg",
+            userImageUrl: (member.userProfile = ""
+              ? `http://ec2-43-201-221-63.ap-northeast-2.compute.amazonaws.com:8080/api/v1/file/image?systemname=${member.userProfile}`
+              : "/images/profile-mom.jpg"),
             isCompleted:
               responseData.weeklyMission.reports[member.userId]?.complete === 1,
           })
         );
 
         setFamilyMembers(members);
+
         setWeekInfo({
           weeklyNum: responseData.weeklyNum,
           missionContents: responseData.weeklyMission.missionContents,
@@ -68,11 +73,17 @@ export default function MainPage() {
         toast.error(
           "Weekly Mission 관련 정보를 불러 오는데, 실패했습니다. (FE)"
         );
+      } finally {
+        setIsLoading(false); // 로딩 상태 해제
       }
     };
 
     fetchWeeklyMission();
-  }, []);
+  }, [setWeekInfo]); // setWeekInfo가 변경될 때마다 다시 실행
+
+  if (isLoading) {
+    return <Loading />; // 로딩 중일 때 로딩 상태 표시
+  }
 
   return (
     <>
