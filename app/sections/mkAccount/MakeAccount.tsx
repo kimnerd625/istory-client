@@ -1,21 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { SetStateAction } from "react";
 
 import MkAccountButton from "@/app/components/mkAccount/MkAccountButton";
 
 interface MakeAccountProps {
-  
+  step: number;
+  setStep: React.Dispatch<SetStateAction<number>>;
 }
 
-const MakeAccount = ({}) => {
+const MakeAccount = ({ step, setStep }: MakeAccountProps) => {
   return (
     <main className="w-full flex-1 flex flex-col justify-between items-center">
       <section className="w-full flex flex-col justify-center items-center pr-5 pl-5">
-        <div className="flex flex-col justify-center items-center"> {/* 추가된 items-center */}
-          <div className="flex flex-col items-center justify-center font-bold text-[26px] leading-8 tracking-tight"> {/* text-center 추가 */}
-              <div><span className="text-main-600">신한 ISTORY</span> 에<br/></div>
-              오신 것을 환영합니다!
+        <div className="flex flex-col justify-center items-center">
+          {" "}
+          {/* 추가된 items-center */}
+          <div className="flex flex-col items-center justify-center font-bold text-[26px] leading-8 tracking-tight">
+            {" "}
+            {/* text-center 추가 */}
+            <div>
+              <span className="text-main-600">신한 ISTORY</span> 에<br />
+            </div>
+            오신 것을 환영합니다!
           </div>
         </div>
         <div className="mb-[54px]"></div>
@@ -32,17 +39,12 @@ const MakeAccount = ({}) => {
             <br />
             적금 개설 시 추억 카드 미션이
             <br />
-            동시에 진행됩니다. 
+            동시에 진행됩니다.
             <br />
           </p>
         </div>
       </section>
-      <Link
-        href="/login"
-        className="w-full flex flex-row justify-center items-center"
-      >
-        <MkAccountButton userId=""/>
-      </Link>
+      <MkAccountButton userId="" />
     </main>
   );
 };
