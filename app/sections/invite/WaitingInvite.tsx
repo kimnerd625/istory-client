@@ -36,7 +36,7 @@ const WaitingInvite = ({}) => {
       {/* <div className="h-[100px]"></div> */}
       <section className="flex flex-col w-full gap-3">
         <Link href="/" className="w-full flex flex-row justify-center items-center">
-          <MkCodeButton userId=""/>
+          <MkCodeButton userId="" handleButton={()=>{}}/>
         </Link>
         
         <div className="flex flex-row">

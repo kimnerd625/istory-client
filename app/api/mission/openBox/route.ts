@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+
 import { BASE_URL } from "../../base_url";
 
 export async function POST(request: NextRequest) {
@@ -36,7 +37,6 @@ export async function POST(request: NextRequest) {
     } else {
       responseData = await response.text();
     }
-
     if (responseData.errorCode) {
       return NextResponse.json(
         {

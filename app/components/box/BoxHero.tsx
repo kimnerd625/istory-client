@@ -32,7 +32,6 @@ const BoxHero = () => {
       if (!response.ok) {
         throw new Error("추억 상자 열기에 실패했습니다.");
       }
-
       toast.success("추억 상자가 성공적으로 열렸습니다!");
     } catch (error) {
       toast.error("추억 상자를 열지 못했습니다.");
