@@ -35,13 +35,9 @@ const MemoryBox = () => {
         </>
       );
     case false:
-      return (
-        <BoxHero isBoxOpened={isBoxOpened} setIsBoxOpened={setIsBoxOpened} />
-      );
+      return <BoxHero />;
     default:
-      return (
-        <BoxHero isBoxOpened={isBoxOpened} setIsBoxOpened={setIsBoxOpened} />
-      );
+      return <BoxHero />;
   }
 };
 

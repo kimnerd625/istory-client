@@ -1,15 +1,37 @@
 import React, { SetStateAction } from "react";
 import localFont from "next/font/local";
 import Image from "next/image";
-
-interface BoxHeroProps {
-  isBoxOpened: boolean;
-  setIsBoxOpened: React.Dispatch<SetStateAction<boolean>>;
-}
+import { getAccessToken } from "@/app/utils/localAccessToken";
+import { toast } from "sonner";
+import useWeekInfoStore from "@/app/store/weekInfo";
 
 const EFDiary = localFont({ src: "../../../public/fonts/EFDiary.ttf" });
 
-const BoxHero = ({ isBoxOpened, setIsBoxOpened }: BoxHeroProps) => {
+const BoxHero = () => {
+  const { weekInfo, setWeekInfo } = useWeekInfoStore();
+
+  const handleOpenButton = async () => {
+    const accessToken = getAccessToken();
+
+    try {
+      const response = await fetch("/api/mission/openBox", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        credentials: "include",
+        body: JSON.stringify({ familymissionNo: weekInfo!.familymissionNo }),
+      });
+
+      if (!response.ok) {
+        throw new Error("추억 상자 열기에 실패했습니다.");
+      }
+    } catch (error) {
+      toast.error("추억 상자를 열지 못했습니다.");
+    }
+  };
+
   return (
     <div className="pt-10 w-full flex flex-col justify-center items-center text-center gap-y-[48px]">
       <h3 className="font-bold text-3xl text-[#1c1c1c] leading-10 tracking-tight">
@@ -34,8 +56,8 @@ const BoxHero = ({ isBoxOpened, setIsBoxOpened }: BoxHeroProps) => {
       </div>
       <div className="mt-15 w-full px-9 flex flex-row justify-center items-center">
         <div
-          onClick={() => setIsBoxOpened(true)}
-          className="w-full cursor-pointer py-[18px] flex flex-row justify-center items-center rounded-full bg-main-500 hover:bg-main-600"
+          onClick={handleOpenButton}
+          className="w-full cursor-pointer py-[18px] flex flex-row justify-center items-center rounded-xl bg-main-400 hover:bg-main-500"
         >
           <span className="font-bold text-white text-xl tracking-tight leading-4">
             열어 보기

@@ -8,8 +8,9 @@ export default function BoxPage() {
   return (
     <>
       <Header isUser={false} isCancel={false} isCheck={false} />
-      <main className="w-full flex-1 flex flex-col justify-start items-center bg-home-bg">
+      <main className="w-full flex-1 flex flex-col justify-start items-center bg-home-bg overflow-x-hidden overflow-y-scroll">
         <MemoryBox />
+        <div className="h-[55px]" />
       </main>
       <BottomNavigationBar />
     </>
