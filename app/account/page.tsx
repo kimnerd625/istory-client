@@ -53,7 +53,7 @@ export default function AccountPage() {
    <>
      <Header isUser={true} isCancel={false} isCheck={false}/>
      <main className="w-full py-0 flex flex-col justify-start items-center gap-y-5 bg-white">
-        <SummaryGui accountNickname = {"우리가족 사랑해"} week = {4} accountExpiryDate={"2025-08-25"} depositBalance={"5000"}/>
+        <SummaryGui accountNickname = "우리가족 사랑해" weeklyNum = {4} accountExpiryDate="2025-08-25" depositBalance="5000"/>
         <span className="items-center mt-5 text-[14px] text-[#757575] font-light">보유 적금 보기</span>
         <div className="flex flex-col w-full px-5 gap-y-5">
           <AccountCard accountNo={"0000000000000"} totalBalance={"200000"}/>
