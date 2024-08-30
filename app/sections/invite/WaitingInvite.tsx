@@ -1,15 +1,10 @@
-"use client";
-
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 import MkCodeButton from "@/app/components/invite/MkCodeButton";
 import UserCard from "@/app/components/invite/UserCard";
 
-interface WaitingInviteProps {}
-
-const WaitingInvite = ({}: WaitingInviteProps) => {
+const WaitingInvite = () => {
   return (
     <section className="w-full flex-1 flex flex-col justify-between items-center">
       <section className="w-full flex flex-col justify-center pr-5 pl-5">

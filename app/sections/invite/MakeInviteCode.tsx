@@ -1,8 +1,4 @@
-"use client";
-
 import React, { SetStateAction } from "react";
-
-import Link from "next/link";
 import Image from "next/image";
 import { toast } from "sonner";
 
