@@ -11,6 +11,8 @@ const MkAccountButtonInfo = () => {
   const [withdrawalBankCode, setWithdrawalBankCode] = useState<string>("");
   const [withdrawalBankName, setWithdrawalBankName] = useState<string>("");
   const [withdrawalAccountNo, setWithdrawalAccountNo] = useState<string>("");
+  const [paymentBalance, setPaymentBalance] = useState<string>(""); 
+  const [paymentDate, setPaymentDate] = useState<string>(""); 
 
   return (
     <section className="w-full flex-1 flex flex-col justify-between items-center">
@@ -23,12 +25,22 @@ const MkAccountButtonInfo = () => {
         <MkAccountForm
           accountNickname={accountNickname}
           setAccountNickname={setAccountNickname}
+
           depositBalance={depositBalance}
           setDepositBalance={setDepositBalance}
+
+          paymentBalance={paymentBalance}
+          setPaymentBalance={setPaymentBalance}
+
+          paymentDate={paymentDate}
+          setPaymentDate={setPaymentDate}
+
           withdrawalBankCode={withdrawalBankCode}
           setWithdrawalBankCode={setWithdrawalBankCode}
+
           withdrawalBankName={withdrawalBankName}
           setWithdrawalBankName={setWithdrawalBankName}
+
           withdrawalAccountNo={withdrawalAccountNo}
           setWithdrawalAccountNo={setWithdrawalAccountNo}
         />
