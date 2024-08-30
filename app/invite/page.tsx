@@ -21,7 +21,14 @@ export default function InvitePage() {
           setInviteCode={setInviteCode}
         />
       )}
-      {step === 2 && <WaitingInvite />}
+      {step === 2 && (
+        <WaitingInvite
+          step={step}
+          setStep={setStep}
+          inviteCode={inviteCode}
+          setInviteCode={setInviteCode}
+        />
+      )}
     </main>
   );
 }

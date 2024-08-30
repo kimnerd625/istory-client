@@ -23,13 +23,12 @@ const MakeInviteCode = ({
   inviteCode,
   setInviteCode,
 }: MakeInviteCodeProps) => {
-  const accessToken = getAccessToken();
-
   const handleButton = async () => {
+    const accessToken = getAccessToken();
     setLoading(true);
 
     try {
-      const response = await fetch("/api/user/createInviteCode", {
+      const response = await fetch("/api/family/createInviteCode", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
