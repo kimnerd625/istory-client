@@ -8,6 +8,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        "dot-bounce": "dot-bounce 1.5s infinite ease-in-out",
+      },
+      keyframes: {
+        "dot-bounce": {
+          "0%, 100%": {
+            transform: "translateY(0)",
+            backgroundColor: "#757575",
+            opacity: "1",
+          },
+          "50%": {
+            transform: "translateY(-10px)",
+            backgroundColor: "#1c1c1c",
+            opacity: "0.7",
+          },
+        },
+      },
       colors: {
         home: {
           bg: "#F4F5FA",

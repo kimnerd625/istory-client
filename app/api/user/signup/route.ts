@@ -26,11 +26,6 @@ export async function POST(request: Request) {
       }),
     });
 
-    if (response) {
-      console.log(response.body);
-      console.log(response);
-    }
-
     const contentType = response.headers.get("Content-Type");
 
     let responseData;
@@ -40,10 +35,14 @@ export async function POST(request: Request) {
       responseData = await response.text();
     }
 
-    if (!response.ok) {
+    // 응답에서 에러 코드와 결과를 체크
+    if (responseData && responseData.result === false) {
+      const errorCode = responseData.error_code || "Unknown error code";
+      const errorMessage = responseData.message || "Unknown error occurred";
+
       return NextResponse.json(
-        { error: "Error: " + responseData },
-        { status: response.status }
+        { error: `Error: ${errorMessage} (Code: ${errorCode})` },
+        { status: 400 }
       );
     }
 

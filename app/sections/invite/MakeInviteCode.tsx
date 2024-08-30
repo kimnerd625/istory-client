@@ -6,12 +6,15 @@ import { toast } from "sonner";
 
 import MkCodeButton from "@/app/components/invite/MkCodeButton";
 import Spinner from "@/app/components/Spinner";
+import { getAccessToken } from "@/app/utils/localAccessToken";
 
 interface MakeInviteCodeProps {
   step: number;
   setStep: React.Dispatch<SetStateAction<number>>;
   loading: boolean;
   setLoading: React.Dispatch<SetStateAction<boolean>>;
+  inviteCode: string;
+  setInviteCode: React.Dispatch<SetStateAction<string>>;
 }
 
 const MakeInviteCode = ({
@@ -19,7 +22,11 @@ const MakeInviteCode = ({
   setStep,
   loading,
   setLoading,
+  inviteCode,
+  setInviteCode,
 }: MakeInviteCodeProps) => {
+  const accessToken = getAccessToken();
+
   const handleButton = async () => {
     setLoading(true);
 
@@ -28,6 +35,7 @@ const MakeInviteCode = ({
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
         },
         credentials: "include",
       });
@@ -35,10 +43,19 @@ const MakeInviteCode = ({
       if (!response.ok) {
         throw new Error("초대코드 발급에 실패했습니다.");
       }
-      toast.success("성공적으로 초대코드를 발급했어요!");
-      // setTimeout(() => {
-      //   setStep(2);
-      // }, 1500);
+
+      const responseData = await response.json();
+
+      // 초대 코드가 성공적으로 발급된 경우, inviteCode 상태 업데이트
+      if (responseData.result && responseData.inviteCode) {
+        setInviteCode(responseData.inviteCode);
+        toast.success("성공적으로 초대코드를 발급했어요!");
+        setTimeout(() => {
+          setStep(2);
+        }, 1500);
+      } else {
+        throw new Error("초대코드 발급에 실패했습니다.");
+      }
     } catch (error) {
       toast.error("초대코드 발급에 실패했습니다.");
     } finally {
