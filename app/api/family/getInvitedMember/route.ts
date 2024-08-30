@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
       },
       credentials: "include",
       body: JSON.stringify({
-        inviteCoode: inviteCode,
+        inviteCode: inviteCode,
       }),
     });
 
