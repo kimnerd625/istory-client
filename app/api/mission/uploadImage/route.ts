@@ -21,20 +21,6 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // familymissionNo를 숫자로 변환한 후 문자열로 다시 변환
-  const familymissionNoNumber = Number(familymissionNo);
-  if (isNaN(familymissionNoNumber)) {
-    return NextResponse.json(
-      {
-        success: false,
-        error: "FE: familymissionNo는 숫자 형식이어야 합니다.",
-      },
-      { status: 400 }
-    );
-  }
-
-  formData.set("familymissionNo", familymissionNoNumber.toString());
-
   //---------------------------------------------------
   // AccessToken
   const accessToken = request.headers.get("Authorization")?.split(" ")[1];

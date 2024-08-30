@@ -118,8 +118,8 @@ const MemoryBox = () => {
                 key={index}
                 userName={member.userName}
                 userImageUrl={member.userImageUrl}
-                thoughts={member.thoughts} // Pass thoughts to MissionCard
-                isMe={member.userId === loginInfo?.userId} // Determine if the user is "me"
+                thoughts={member.thoughts}
+                isMe={member.userId === loginInfo?.userId}
               />
             ))}
           </section>

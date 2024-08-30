@@ -4,7 +4,7 @@ import { BASE_URL } from "../../base_url";
 
 export async function POST(request: NextRequest) {
   try {
-    const { familymissionNo, thoughts } = await request.json();
+    const { familymissionNo, thoughts, complete } = await request.json();
     const apiUrl = `${BASE_URL}/mission/report`;
 
     const accessToken = request.headers.get("Authorization")?.split(" ")[1];
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
       credentials: "include",
       body: JSON.stringify({
         familymissionNo: parseInt(familymissionNo),
-        thoughts: { thoughts },
+        thoughts: thoughts,
         complete: "2",
       }),
     });
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     } else {
       responseData = await response.text();
     }
-    if (responseData.errorCode) {
+    if (responseData.error) {
       return NextResponse.json(
         {
           error: `설정한 에러: ${responseData.errorCode}`,
