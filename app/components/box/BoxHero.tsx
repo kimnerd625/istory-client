@@ -1,4 +1,4 @@
-import React, { SetStateAction } from "react";
+import React from "react";
 import localFont from "next/font/local";
 import Image from "next/image";
 import { getAccessToken } from "@/app/utils/localAccessToken";
@@ -9,6 +9,8 @@ const EFDiary = localFont({ src: "../../../public/fonts/EFDiary.ttf" });
 
 const BoxHero = () => {
   const { weekInfo, setWeekInfo } = useWeekInfoStore();
+
+  const weeklyNum = weekInfo?.weeklyNum ?? 1;
 
   const handleOpenButton = async () => {
     const accessToken = getAccessToken();
@@ -44,7 +46,8 @@ const BoxHero = () => {
         <h4
           className={`${EFDiary.className} absolute top-[90px] left-[80px] text-[60px] tracking-tight leading-5 text-white`}
         >
-          5<span className="text-[32px]">th</span>
+          {weeklyNum}
+          <span className="text-[32px]">th</span>
         </h4>
         <div className="absolute w-[200px] h-[200px] bottom-0 right-[59px]">
           <Image

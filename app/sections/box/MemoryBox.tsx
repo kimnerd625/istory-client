@@ -1,11 +1,16 @@
 "use client";
 
+import React, { useState } from "react";
+
 import BoxHero from "@/app/components/box/BoxHero";
 import BoxInfo from "@/app/components/box/BoxInfo";
 import MissionCard from "@/app/components/box/MissionCard";
-import React, { useState } from "react";
+
+import useWeekInfoStore from "@/app/store/weekInfo";
 
 const MemoryBox = () => {
+  const { weekInfo, setWeekInfo } = useWeekInfoStore();
+
   const [isBoxOpened, setIsBoxOpened] = useState<boolean>(false); // 추후 zustand로 전역 상태 관리 예정
 
   switch (isBoxOpened) {
