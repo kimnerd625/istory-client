@@ -67,6 +67,8 @@ export default function MainPage() {
           missionContents: responseData.weeklyMission.missionContents,
           familymissionNo: responseData.weeklyMission.familymissionNo,
           showCheck: responseData.showCheck,
+          startDate: responseData.registDate,
+          endDate: responseData.expirationDate,
         });
       } catch (error) {
         console.error("Error fetching weekly mission:", error);

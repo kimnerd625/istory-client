@@ -58,6 +58,8 @@ const BoxHero = () => {
         missionContents: statusData.weeklyMission.missionContents,
         familymissionNo: statusData.weeklyMission.familymissionNo,
         showCheck: statusData.showCheck,
+        startDate: statusData.registDate,
+        endDate: statusData.expirationDate,
       });
     } catch (error) {
       toast.error("추억 상자를 열지 못했습니다.");
