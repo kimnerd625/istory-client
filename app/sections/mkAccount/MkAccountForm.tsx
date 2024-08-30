@@ -49,8 +49,8 @@ const MkAccountFrom = ({
 }: MkAccountFromProps) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [faList, setFaList] = useState<string[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // 모달 상태 추가
-  const [selectedAccount, setSelectedAccount] = useState<string | null>(null); // 선택된 계좌 상태 추가
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
 
   useEffect(() => {
     const getFrequentList = async () => {
@@ -83,16 +83,16 @@ const MkAccountFrom = ({
   }, []);
 
   const handleOpenModal = () => {
-    setIsModalOpen(true); // 모달 열기
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); // 모달 닫기
+    setIsModalOpen(false);
   };
 
   const handleSelectAccount = (accountNo: string) => {
-    setSelectedAccount(accountNo); // 선택된 계좌 설정
-    setIsModalOpen(false); // 모달 닫기
+    setSelectedAccount(accountNo);
+    setIsModalOpen(false);
   };
 
   if (loading) {

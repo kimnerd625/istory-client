@@ -16,7 +16,9 @@ const LongButton = ({
       <button
         onClick={buttonAction}
         className={`w-full rounded-xl py-[18px] flex flex-row justify-center items-center ${
-          color == "blue" ? "bg-main-400" : "bg-white border border-[#C8C8C8]"
+          color == "blue"
+            ? "bg-main-400 hover:bg-main-500"
+            : "bg-white border border-[#C8C8C8]"
         }`}
       >
         <span
