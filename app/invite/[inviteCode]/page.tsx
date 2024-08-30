@@ -3,10 +3,13 @@
 import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import LongButton from "@/app/components/LongButton";
+import { toast } from "sonner";
+import { getAccessToken } from "@/app/utils/localAccessToken";
 
 export default function InviteDetailPage() {
   const router = useRouter();
   const pathname = usePathname();
+  const [loading, setLoading] = useState<boolean>(false);
 
   // URL에서 초대 코드 추출
   const inviteCodeUrl = pathname.split("/").pop();
@@ -24,6 +27,38 @@ export default function InviteDetailPage() {
   // 초대 코드 입력 필드 변경 핸들러
   const handleInviteCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInviteCode(e.target.value);
+  };
+
+  const handleSubmitButton = async () => {
+    setLoading(true);
+
+    const accessToken = getAccessToken();
+
+    try {
+      const response = await fetch("/api/family/joinFamily", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          inviteCode,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("초대 수락에 실패했습니다.");
+      }
+      toast.success("가족 모임을 수락하셨습니다!");
+      // setTimeout(() => {
+      //   router.push("#");
+      // }, 1500);
+    } catch (error) {
+      toast.error("초대 수락에 실패했습니다.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,7 +85,10 @@ export default function InviteDetailPage() {
           />
         </div>
       </section>
-      <LongButton buttonText="초대 코드 입력하기" />
+      <LongButton
+        buttonText="초대 코드 입력하기"
+        buttonAction={handleSubmitButton}
+      />
     </main>
   );
 }

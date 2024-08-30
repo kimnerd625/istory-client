@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
-import BottomNavigationBar from "./sections/BottomNavigationBar";
 import { Toaster } from "sonner";
 import { Suspense } from "react";
 import Loading from "./loading";
