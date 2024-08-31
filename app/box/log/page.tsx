@@ -21,7 +21,7 @@ export default function MissionLogPage() {
   return (
     <>
       <Header isCheck={true} isCancel={true} isUser={false} />
-      <main className="w-full flex-1 flex flex-col justify-start items-center bg-home-bg">
+      <main className="w-full flex-1 flex flex-col justify-start items-center bg-custom-background">
         <div className="w-full px-5 py-7 flex flex-col justify-start items-center gap-y-9">
           <BoxInfo
             isDateVisible={false}

@@ -57,7 +57,7 @@ export default function MissionLogPage() {
   return (
     <>
       <Header isCheck={false} isCancel={true} isUser={false} />
-      <main className="w-full flex-1 flex flex-col justify-start items-center bg-white">
+      <main className="w-full flex-1 flex flex-col justify-start items-center bg-custom-background">
         <SummaryInquiry accountNickName = "우리가족" accountNo="0000000000000" totalBalance="200,000" week = {4}  accountCreateDate= "2024.08.10"  accountExpiryDate= "2025.07.31"/>
         <InquiryinfoCard depositBalance="50000" totalBalance="50000" paymentInfo={paymentInfo}/>
         <InquiryinfoCard depositBalance="50000" totalBalance="50000" paymentInfo={paymentInfo}/>

@@ -10,7 +10,7 @@ export default function InvitePage() {
   const [loading, setLoading] = useState<boolean>(false);
 
   return (
-    <main className="w-full flex-1 flex flex-col justify-between items-center bg-home-bg overflow-x-hidden py-[56px]">
+    <main className="w-full flex-1 flex flex-col justify-between items-center bg-custom-background overflow-x-hidden py-[56px]">
       {step === 1 && (
         <MakeInviteCode
           step={step}
