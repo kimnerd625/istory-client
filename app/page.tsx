@@ -5,7 +5,7 @@ import LongButton from "./components/LongButton";
 
 export default function Home() {
   return (
-    <main className="w-full flex-1 flex flex-col justify-between items-center bg-home-bg overflow-x-hidden py-[56px]">
+    <main className="w-full flex-1 flex flex-col justify-between items-center bg-custom-background overflow-x-hidden py-[56px]">
       <section className="w-full flex flex-col justify-center items-center">
         <h4 className="text-2xl font-extrabold text-black tracking-tight leading-5">
           환영합니다!

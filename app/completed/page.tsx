@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function CompletedPage() {
   return (
-    <main className="w-full flex-1 flex flex-col justify-between items-center bg-home-bg overflow-x-hidden py-[56px]">
+    <main className="w-full flex-1 flex flex-col justify-between items-center bg-custom-background overflow-x-hidden py-[56px]">
       <section className="w-full flex flex-col justify-start items-center">
         <h2 className="text-[26px] font-bold tracking-tight leading-8">
           적금 개설을 완료했습니다!

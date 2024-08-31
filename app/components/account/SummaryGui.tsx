@@ -42,7 +42,7 @@ const SummaryGui = ({ accountNickname = "우리가족 사랑해", accountExpiryD
       <div className="w-full flex flex-col">
         {/* 요약 카드 섹션 */}
         <section className="w-full flex flex-col justify-center items-center gap-y-5">
-          <div className="summary-card p-5 bg-[#F4F6FA] w-full h-[318px] flex-1 flex flex-col justify-start items-start">
+          <div className="summary-card p-5 bg-[#f0f3fa] w-full h-[318px] flex-1 flex flex-col justify-start items-start">
             <div className="border-[1.6px] border-[#9FB8F8] px-4 py-2 rounded-lg flex flex-row justify-center items-center mb-[10px]">
               <span className="font-extrabold text-sm tracking-tight leading-4 text-[#9FB8F8]">D-{Dday}</span>
             </div>

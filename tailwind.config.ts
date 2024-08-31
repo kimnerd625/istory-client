@@ -36,6 +36,9 @@ const config: Config = {
           600: "#5F9AF5",
         },
       },
+      backgroundImage: {
+        'custom-background': 'url(/images/paper-texture.png)',
+      },
     },
   },
   plugins: [],

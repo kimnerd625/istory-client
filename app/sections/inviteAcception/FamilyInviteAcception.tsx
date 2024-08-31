@@ -48,7 +48,7 @@ const EnterInviteCode = ({ inviteCode }: EnterInviteCodeProps) => {
         </div>
       </section>
       <div className="w-full flex flex-row justify-between items-center gap-5">
-        <Link href="/" className="w-full">
+        <Link href="../../inviteAcception/WaitingInvite.tsx" className="w-full">
           <button
             // onClick={() => handleClickNextButton()}
             className="bg-main-400 rounded-xl w-full flex flex-col justify-center items-center font-extrabold text-white text-xl leading-5 tracking-tight py-[18px]"

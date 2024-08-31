@@ -65,7 +65,7 @@ export default function SignUpPage() {
   };
 
   return (
-    <main className="w-full flex-1 flex flex-col justify-start items-center bg-home-bg overflow-x-hidden py-[56px] px-5">
+    <main className="w-full flex-1 flex flex-col justify-start items-center bg-custom-background overflow-x-hidden py-[56px] px-5">
       {loading && <Spinner />}
       {step === 1 && (
         <RoleSelect
