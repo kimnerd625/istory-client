@@ -72,9 +72,12 @@ export default function MissionLogPage() {
           };
         });
 
-        setMissionImg(
-          `http://ec2-43-201-221-63.ap-northeast-2.compute.amazonaws.com:8080/api/v1/file/image?systemname=${responseData.missionImg}`
-        );
+        // Check if missionImg is an empty string and set default image if so
+        const missionImgUrl = responseData.missionImg
+          ? `http://ec2-43-201-221-63.ap-northeast-2.compute.amazonaws.com:8080/api/v1/file/image?systemname=${responseData.missionImg}`
+          : "/images/character-default.png"; // Default image when missionImg is empty
+
+        setMissionImg(missionImgUrl);
         setFamilyMembers(members);
       } catch (error) {
         console.error("Error fetching weekly mission:", error);
