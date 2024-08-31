@@ -29,7 +29,7 @@ const ImageUploader = ({ familymissionNo }: ImageUploaderProps) => {
 
   const handleSubmit = async (file: File) => {
     const formData = new FormData();
-    formData.append("familymissionNo", Number(familymissionNo).toString()); // 숫자로 변환한 후 문자열로 변환
+    formData.append("familymissionNo", familymissionNo); // 숫자로 변환한 후 문자열로 변환
     formData.append("missionImg", file);
 
     try {
