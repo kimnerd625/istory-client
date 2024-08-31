@@ -9,8 +9,14 @@ import {
 } from "@/app/components/account";
 import Header from "../sections/Header";
 import BottomNavigationBar from "../sections/BottomNavigationBar";
+import useWeekInfoStore from "../store/weekInfo";
 
 export default function AccountPage() {
+  const { weekInfo } = useWeekInfoStore();
+  let week = weekInfo?.weeklyNum ?? 0;
+
+  const balance = week * 200000;
+
   useEffect(() => {
     const fetchSavingAccount = async () => {
       try {
@@ -32,7 +38,7 @@ export default function AccountPage() {
           보유 적금 보기
         </span>
         <div className="flex flex-col w-full px-5 gap-y-5">
-          <AccountCard accountNo={"0000000000000"} totalBalance={"200000"} />
+          <AccountCard accountNo={"0014011530653313"} totalBalance={balance} />
           <InterestCard />
         </div>
 

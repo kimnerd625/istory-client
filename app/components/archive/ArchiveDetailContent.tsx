@@ -8,9 +8,9 @@ interface ArchiveDetailContentProps {
 const ArchiveDetailContent = ({ data }: ArchiveDetailContentProps) => {
   return (
     <div className="w-full flex flex-col justify-start items-start gap-y-6">
-      <div className="relative w-[320px] h-[240px] rounded-xl shadow-lg">
+      <div className="relative w-[320px] h-[240px] rounded-xl shadow-lg overflow-hidden">
         <Image
-          src={data?.imageUrl || "/images/user-default.png"}
+          src={data?.imageUrl || "/images/mission-image.jfif"}
           alt="카드 이미지"
           fill
           style={{ objectFit: "cover" }}
