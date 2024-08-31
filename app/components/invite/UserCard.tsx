@@ -64,9 +64,9 @@ const UserCard = ({
     <div className="user-profile w-[80px] h-[104px] flex flex-col justify-center items-center py-2 px-2.5 bg-white rounded-xl border relative">
       <div className="relative">
         {/* 유저 프로필 사진 */}
-        <div className="w-[60px] h-[60px] overflow-hidden rounded-full border">
+        <div className="relative w-[60px] h-[60px] overflow-hidden rounded-full border">
           <Image
-            src="/images/user-default2.png"
+            src="/images/character-default.png"
             alt="사용자 프로필 이미지"
             fill
             style={{ objectFit: "cover" }}
