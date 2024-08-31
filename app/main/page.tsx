@@ -54,7 +54,7 @@ export default function MainPage() {
             userName: member.userName,
             userImageUrl: member.userProfile
               ? `http://ec2-43-201-221-63.ap-northeast-2.compute.amazonaws.com:8080/api/v1/file/image?systemname=${member.userProfile}`
-              : "/images/profile-mom.jpg", // Default profile image when member.userProfile is empty
+              : "/images/character-default.png", // Default profile image when member.userProfile is empty
             isCompleted:
               responseData.weeklyMission.reports[member.userId]?.complete === 1,
           })

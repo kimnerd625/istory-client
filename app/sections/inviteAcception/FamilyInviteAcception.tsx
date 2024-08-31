@@ -74,7 +74,7 @@ const FamilyInviteAcception = () => {
         <div className="relative flex flex-col w-full">
           <div className="absolute family-profile w-20 h-20 rounded-[40px] left-1/2 top-0 transform -translate-x-1/2 -translate-y-1/2">
             <Image
-              src="/images/profile-mom.jpg"
+              src="/images/character-default.png"
               alt="관리자 프로필"
               className="rounded-[40px]"
               fill

@@ -20,10 +20,12 @@ const UsersProfile = ({
           isCompleted ? "completed" : "uncompleted"
         } w-[60px] flex flex-col justify-center items-center gap-2`}
       >
-        <div className="relative w-[60px] h-[60px] overflow-hidden rounded-full border-4 border-main-500">
-          <Image src={userImageUrl} alt="사용자 프로필 이미지" fill />
+        <div className="relative flex flex-col justify-center items-center">
+          <div className="relative w-[60px] h-[60px] rounded-full overflow-hidden border-4 border-main-500 z-10">
+            <Image src={userImageUrl} alt="사용자 프로필 이미지" fill />
+          </div>
           {isCompleted && (
-            <div className="w-6 h-6 absolute rounded-full bg-main-500 right-0 bottom-0 flex justify-center items-center">
+            <div className="w-6 h-6 absolute rounded-full bg-main-500 right-0 bottom-0 flex justify-center items-center z-30">
               <img
                 src="/images/white-check-icon.png"
                 alt="체크 표시"
