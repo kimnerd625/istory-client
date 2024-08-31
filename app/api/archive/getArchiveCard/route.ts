@@ -30,14 +30,20 @@ export async function POST(req: NextRequest) {
     });
 
     if (!response.ok) {
-      console.error("아카이브 정보를 가져오는데 실패했습니다.");
+      console.error("Failed to fetch archive information.");
+      return NextResponse.json(
+        { error: "Failed to fetch archive information." },
+        { status: response.status }
+      );
     }
 
     const data = await response.json();
     return NextResponse.json(data);
-    return null;
   } catch (error: any) {
-    console.error("아카이브 정보를 불러오는데, 문제가 생겼습니다.", error);
+    console.error(
+      "An error occurred while fetching archive information.",
+      error
+    );
     return NextResponse.json(
       { error: "Failed to connect to API", message: error.message },
       { status: 500 }
