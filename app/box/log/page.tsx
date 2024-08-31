@@ -29,6 +29,8 @@ export default function MissionLogPage() {
   const [startDate, setStartDate] = useState<string>();
   const [endDate, setEndDate] = useState<string>();
 
+  const [missionImg, setMissionImg] = useState<string>();
+
   const [familyMembers, setFamilyMembers] = useState<FamilyMemberProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -70,6 +72,9 @@ export default function MissionLogPage() {
           };
         });
 
+        setMissionImg(
+          `http://ec2-43-201-221-63.ap-northeast-2.compute.amazonaws.com:8080/api/v1/file/image?systemname=${responseData.missionImg}`
+        );
         setFamilyMembers(members);
       } catch (error) {
         console.error("Error fetching weekly mission:", error);
@@ -116,10 +121,14 @@ export default function MissionLogPage() {
           {isTextInputFocused ? (
             <></>
           ) : (
-            <ImageUploader familymissionNo={weekInfo?.familymissionNo || ""} />
+            <ImageUploader
+              missionImg={missionImg || ""}
+              familymissionNo={weekInfo?.familymissionNo || ""}
+            />
           )}
           {loggedInUser && (
             <MissionInput
+              thoughts={loggedInUser.thoughts}
               userName={loggedInUser.userName}
               userImageUrl={loggedInUser.userImageUrl}
               setIsTextInputFocused={setIsTextInputFocused}

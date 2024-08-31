@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import MkCodeButton from "@/app/components/invite/MkCodeButton";
 import Spinner from "@/app/components/Spinner";
 import { getAccessToken } from "@/app/utils/localAccessToken";
+import Link from "next/link";
 
 interface MakeInviteCodeProps {
   step: number;
@@ -86,8 +87,18 @@ const MakeInviteCode = ({
           </p>
         </div>
       </section>
-      <div className="w-full flex flex-row justify-center items-center">
-        <MkCodeButton handleButton={handleButton} />
+      <div className="w-full flex flex-col justify-center items-center gap-y-3">
+        <div className="w-full flex flex-row justify-center items-center">
+          <MkCodeButton handleButton={handleButton} />
+        </div>
+        <Link
+          href="/invite/000000"
+          className="w-full flex flex-col justify-center items-center "
+        >
+          <span className="text-sm font-normal text-[#757575] tracking-tight leading-5 underline">
+            이미 가족이 있으신가요?
+          </span>
+        </Link>
       </div>
     </main>
   );

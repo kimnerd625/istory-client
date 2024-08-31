@@ -1,23 +1,30 @@
-import React, { SetStateAction, useState } from "react";
+import React, { SetStateAction, useState, useEffect } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { getAccessToken } from "@/app/utils/localAccessToken";
 import useWeekInfoStore from "@/app/store/weekInfo";
 
 interface MissionInputProps {
+  thoughts: string;
   userName: string;
   userImageUrl: string;
   setIsTextInputFocused: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const MissionInput = ({
+  thoughts,
   userName,
   userImageUrl,
   setIsTextInputFocused,
 }: MissionInputProps) => {
   const { weekInfo } = useWeekInfoStore();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [thoughts, setThoughts] = useState<string>("");
+  const [reflection, setReflection] = useState<string>("");
+
+  // 초기 thoughts 값 설정
+  useEffect(() => {
+    setReflection(thoughts || "");
+  }, [thoughts]);
 
   const handleSubmit = async () => {
     const accessToken = getAccessToken();
@@ -33,7 +40,7 @@ const MissionInput = ({
         credentials: "include",
         body: JSON.stringify({
           familymissionNo: weekInfo?.familymissionNo,
-          thoughts,
+          thoughts: reflection,
         }),
       });
 
@@ -66,8 +73,8 @@ const MissionInput = ({
             setIsTextInputFocused(false);
             handleSubmit(); // 사용자가 textarea를 벗어날 때 POST 요청을 보냄
           }}
-          value={thoughts}
-          onChange={(e) => setThoughts(e.target.value)} // textarea 값 업데이트
+          value={reflection}
+          onChange={(e) => setReflection(e.target.value)} // textarea 값 업데이트
           className="text-[#1A2128] tracking-tight leading-6 font-normal text-sm resize-none w-full bg-transparent h-[150px] placeholder:text-[#B3B3B3] focus:ring-0 focus:outline-none"
           placeholder="이곳을 눌러 답변을 입력해주세요."
         />

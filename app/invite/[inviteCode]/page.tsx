@@ -50,10 +50,12 @@ export default function InviteDetailPage() {
       if (!response.ok) {
         throw new Error("초대 수락에 실패했습니다.");
       }
+
       toast.success("가족 모임을 수락하셨습니다!");
-      // setTimeout(() => {
-      //   router.push("#");
-      // }, 1500);
+      setTimeout(() => {
+        // 현재 경로에 /familyAccept 추가하여 리다이렉트
+        router.push(`${pathname}/familyAccept`);
+      }, 1500);
     } catch (error) {
       toast.error("초대 수락에 실패했습니다.");
     } finally {

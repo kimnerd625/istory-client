@@ -6,11 +6,14 @@ import { toast } from "sonner";
 import { getAccessToken } from "@/app/utils/localAccessToken";
 
 interface ImageUploaderProps {
-  familymissionNo: string; // 처음에는 문자열로 전달됩니다
+  missionImg: string;
+  familymissionNo: string;
 }
 
-const ImageUploader = ({ familymissionNo }: ImageUploaderProps) => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+const ImageUploader = ({ missionImg, familymissionNo }: ImageUploaderProps) => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(
+    missionImg ?? null
+  );
   const [selectedFile, setSelectedFile] = useState<File | null>(null); // 선택된 파일을 저장하기 위한 상태
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +36,7 @@ const ImageUploader = ({ familymissionNo }: ImageUploaderProps) => {
     formData.append("missionImg", file);
 
     try {
-      const response = await fetch("/api/mission/uploadMissionImage", {
+      const response = await fetch("/api/mission/uploadImage", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${getAccessToken()}`, // 필요한 경우 액세스 토큰을 포함

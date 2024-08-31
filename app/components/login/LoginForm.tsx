@@ -75,11 +75,15 @@ const LoginForm = () => {
         throw new Error("회원 상태를 불러 오는데, 실패했습니다.");
       }
 
-      const { hasFamily } = await response.json();
+      const { hasFamily, inviteCode } = await response.json();
 
-      if (hasFamily) {
+      if (hasFamily && inviteCode) {
         setTimeout(() => {
           router.push("/main");
+        }, 2000);
+      } else if (!hasFamily && inviteCode) {
+        setTimeout(() => {
+          router.push(`/invite/${inviteCode}/familyQueue`);
         }, 2000);
       } else {
         setTimeout(() => {

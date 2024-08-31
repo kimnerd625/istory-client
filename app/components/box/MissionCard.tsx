@@ -28,9 +28,11 @@ const MissionCard = ({
       <div className="w-full">
         {isMe ? (
           thoughts ? (
-            <p className="text-[#1A2128] tracking-tight leading-5 font-normal text-sm">
-              {thoughts}
-            </p>
+            <Link href="/box/log">
+              <p className="text-[#1A2128] tracking-tight leading-5 font-normal text-sm">
+                {thoughts}
+              </p>
+            </Link>
           ) : (
             <Link href="/box/log">
               <p className="text-[#1A2128] tracking-tight leading-5 font-normal text-sm">
