@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 우리 가족 추억과 적금 모두 차곡차곡
+## 아이스토리 11조 쏠패밀리, 이가영 김지훈 프론트엔드
 
-## Getting Started
 
-First, run the development server:
+### 프로젝트 구조
+- Next.js 14: 최신 Next.js 기능을 활용하여 서버 측 렌더링(SSR), 정적 사이트 생성(SSG), 클라이언트 측 네비게이션 등 다양한 기능을 구현함.
+- App Router: Next.js 14의 새로운 App Router 기능을 사용하여 페이지 라우팅 및 서버 구성 요소를 관리함.
+- Tailwind CSS: Tailwind CSS를 사용하여 모던하고 반응형 디자인을 손쉽게 구현함.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+### 주요 기능
+1. API Routes와 중간 서버 구현
+이 프로젝트에서는 Next.js의 API Routes를 사용하여 백엔드 서버와 통신하는 중간 서버를 구현하였습니다. API Routes는 프론트엔드와 백엔드 간의 모든 요청을 관리하며, 다음과 같은 이점이 있습니다:
+- 데이터 유효성 검사: 프론트엔드에서 백엔드로 전송되는 데이터의 유효성을 검사함.
+- API 요청 최적화: 백엔드 서버로의 API 요청을 관리하고 최적화하여 효율적인 통신을 지원함.
+- 에러 처리: 백엔드에서 발생할 수 있는 오류를 효과적으로 처리하고 사용자에게 적절한 피드백을 제공함.
+
+2. Tailwind CSS 통합
+Tailwind CSS를 프로젝트에 통합하여 다음과 같은 이점이 있습니다:
+- 간편한 스타일링: Tailwind의 유틸리티 클래스 기반 접근 방식으로 빠르고 일관된 스타일링이 가능함.
+- 반응형 디자인: 다양한 디바이스에 적응할 수 있는 반응형 디자인을 손쉽게 구현함.
+- 맞춤형 테마 설정: Tailwind의 설정 파일을 사용하여 프로젝트에 맞게 테마를 커스터마이징할 수 있음.
+
+
+### 설치 및 실행
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+저장소 클론
+bash
+코드 복사
+git clone https://github.com/sol-family/istory-client.git
+cd project-name
+의존성 설치
+코드 복사
+npm install
+개발 서버 실행
+코드 복사
+npm run dev
+브라우저에서 http://localhost:3000에 접속하여 애플리케이션을 확인할 수 있습니다.
+```
