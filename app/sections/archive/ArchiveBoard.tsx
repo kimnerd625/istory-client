@@ -1,38 +1,42 @@
-import React, {useEffect, useState} from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import ArchiveCard from "@/app/components/archive/ArchiveCard";
 import { toast } from "sonner";
 import { getAccessToken } from "../../utils/localAccessToken";
 
 const ArchiveBoard = () => {
-
   const [accountData, setAccountData] = useState<any>();
   const [roundNum, setRoundNum] = useState<number>(0); // 총 회차 수
   const [selectedRound, setSelectedRound] = useState<number>(1); // 선택된 회차 번호
   const [roundDate, setRoundDate] = useState<any>(); // 선택된 회차의 날짜 정보
   const [roundMissions, setRoundMissions] = useState<any[]>([]); // 선택된 회차의 미션들
 
-  useEffect(()=>{
+  useEffect(() => {
     // 데이터를 가져오는 fetchAccountData라는 비동기 함수(async function)를 정의합니다.
-    const fetchArchiveData = async() => {
+    const fetchArchiveData = async () => {
       const accessToken = getAccessToken();
       console.log(accessToken);
 
       try {
-        const response = await fetch("https://istroyapi.ssafy.io/api/v1/mission/roundMissions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({ roundNum: 1 }),
-        });
-  
+        const response = await fetch(
+          "https://istroyapi.ssafy.io/api/v1/mission/roundMissions",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify({ roundNum: 1 }),
+          }
+        );
+
         if (!response.ok) {
           throw new Error("데이터 조회 실패");
         }
 
         const data = await response.json(); // 응답 데이터를 JSON으로 파싱
-        // 디버깅 용도  
+        // 디버깅 용도
         console.log(data); // 디버깅 용도
 
         // roundNum을 상태로 설정
@@ -40,7 +44,6 @@ const ArchiveBoard = () => {
         // 최초 로드시 첫 번째 회차의 데이터를 설정
         setRoundDate(data.roundDate);
         setRoundMissions(data.roundMissions);
-
       } catch (error) {
         toast.error("데이터 조회 실패");
       }
@@ -48,20 +51,24 @@ const ArchiveBoard = () => {
 
     // 위에서 정의한 fetchArchiveData 함수를 호출하여 데이터를 가져옵니다.
     fetchArchiveData();
-
-  }, [])
+  }, []);
 
   return (
     <div>
-      <select value={selectedRound} onChange={(e) => setSelectedRound(Number(e.target.value))}>
+      <select
+        value={selectedRound}
+        onChange={(e) => setSelectedRound(Number(e.target.value))}
+      >
         <option value="" disabled>
           회차 선택
         </option>
-        {Array.from({ length: roundNum }, (_, index) => index + 1).map((num) => (
-          <option key={num} value={num}>
-            {num} 회차
-          </option>
-        ))}
+        {Array.from({ length: roundNum }, (_, index) => index + 1).map(
+          (num) => (
+            <option key={num} value={num}>
+              {num} 회차
+            </option>
+          )
+        )}
       </select>
 
       <section className="w-full flex flex-col justify-center items-center gap-y-1">
