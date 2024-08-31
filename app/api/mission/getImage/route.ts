@@ -43,13 +43,13 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
-      console.error("초대 인원 삭제에 실패했습니다.");
+      console.error("이미지 불러오기에 실패했습니다.");
     }
 
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error: any) {
-    console.error("초대 인원 삭제에 실패했습니다.", error);
+    console.error("이미지 불러오기에 실패했습니다.", error);
     return NextResponse.json(
       { error: "Failed to connect to API", message: error.message },
       { status: 500 }
