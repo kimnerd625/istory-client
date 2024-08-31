@@ -11,7 +11,7 @@ import DeleteIcon from "@/public/icons/icon-delete.svg";
 interface UserCardProps {
   userId: string;
   name: string;
-  inviteCode: string;
+  inviteCode?: string;
   isNotRepresentative?: boolean;
 }
 
