@@ -9,6 +9,7 @@ import { getAccessToken } from "@/app/utils/localAccessToken";
 import Spinner from "@/app/components/Spinner";
 
 import RightIcon from "@/public/icons/icon-chevron-right.svg";
+import { useRouter } from "next/navigation";
 
 interface MkAccountFromProps {
   accountNickname: string;
@@ -31,22 +32,22 @@ interface MkAccountFromProps {
 
   withdrawalAccountNo: string;
   setWithdrawalAccountNo: React.Dispatch<React.SetStateAction<string>>;
+
+  inviteCode: string; // inviteCode prop 추가
 }
 
 const MkAccountFrom = ({
+  inviteCode,
   accountNickname,
   setAccountNickname,
   paymentBalance,
   setPaymentBalance,
   paymentDate,
   setPaymentDate,
-  withdrawalBankCode,
-  setWithdrawalBankCode,
-  withdrawalBankName,
-  setWithdrawalBankName,
   withdrawalAccountNo,
   setWithdrawalAccountNo,
 }: MkAccountFromProps) => {
+  const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
   const [faList, setFaList] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -91,8 +92,44 @@ const MkAccountFrom = ({
   };
 
   const handleSelectAccount = (accountNo: string) => {
-    setSelectedAccount(accountNo);
-    setIsModalOpen(false);
+    setSelectedAccount(accountNo); // 선택된 계좌 번호를 상태에 저장
+    setIsModalOpen(false); // 모달을 닫기
+  };
+
+  // POST 요청을 보내는 함수
+  const handleSubmitButton = async () => {
+    const accessToken = getAccessToken();
+
+    // 서버에 보낼 데이터 구성
+    const data = {
+      inviteCode, // inviteCode 값
+      withdrawalAccountNo: selectedAccount, // 선택된 계좌 번호
+      depositBalance: parseInt(paymentBalance), // 입력된 가입 금액
+    };
+
+    try {
+      const response = await fetch("/api/family/confirmFamily", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(data), // JSON 형식으로 데이터 변환
+      });
+
+      if (!response.ok) {
+        throw new Error("계좌 생성에 실패했습니다.");
+      }
+
+      const responseData = await response.json();
+      toast.success("계좌가 성공적으로 생성되었습니다.");
+      setTimeout(() => {
+        router.push("/completed");
+      }, 1500);
+    } catch (error) {
+      toast.error("계좌 생성에 실패했습니다.");
+      console.error("Error creating account:", error);
+    }
   };
 
   if (loading) {
@@ -124,7 +161,7 @@ const MkAccountFrom = ({
             htmlFor="depositBalance"
             className="text-base font-medium text-[#1A2128] tracking-tight leading-5"
           >
-            매주 납입 금액
+            최소 가입 금액
           </label>
           <div className="flex flex-row justify-between items-center gap-x-[7px]">
             <input
@@ -153,23 +190,6 @@ const MkAccountFrom = ({
         </div>
         <div className="w-full flex flex-row justify-between items-center gap-y-2">
           <label
-            htmlFor="paymentDate"
-            className="text-base font-medium text-[#1A2128] tracking-tight leading-5"
-          >
-            적금 요일
-          </label>
-          <input
-            key="depositBalanceinput"
-            type="text"
-            id="depositBalance"
-            value={paymentDate}
-            onChange={(e) => setPaymentDate(e.target.value)}
-            placeholder="요일"
-            className="w-[150px] px-[14px] py-[13px] rounded-lg bg-[#E4E4E4] focus:outline-none focus:border-none focus:bg-main-300"
-          />
-        </div>
-        <div className="w-full flex flex-row justify-between items-center gap-y-2">
-          <label
             htmlFor="depositBalance"
             className="text-base font-medium text-[#1A2128] tracking-tight leading-5"
           >
@@ -182,21 +202,24 @@ const MkAccountFrom = ({
           </div>
         </div>
 
+        {/* 연결 계좌 선택 버튼 */}
         <div
           onClick={handleOpenModal}
-          className="w-full flex flex-row justify-between items-center bg-[#E4E4E4] rounded-[12px]"
+          className="w-full flex flex-row justify-between items-center bg-[#E4E4E4] rounded-[12px] cursor-pointer"
         >
           <div className="w-full flex flex-row justify-between items-center px-7 h-[80px]">
-            <span>연결 계좌</span>
+            <span>입출금 (신한)</span>
             <div className="flex items-center gap-1">
-              <span>등록하기</span>
+              {/* 선택된 계좌 번호 표시, 없으면 기본 텍스트 */}
+              <span>{selectedAccount || "등록하기"}</span>
               <RightIcon width={16} height={16} />
             </div>
           </div>
         </div>
-        <div className="h-[61px]"> </div>
+        <div className="h-[60px]" />
       </div>
 
+      {/* 모달 창 */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white rounded-lg p-6 w-[300px]">
@@ -223,14 +246,15 @@ const MkAccountFrom = ({
         </div>
       )}
 
-      <Link
-        href="/"
-        className="w-full flex flex-row justify-center items-center"
-      >
-        <button className="bg-main-400 rounded-xl w-full flex flex-col justify-center items-center font-extrabold text-white text-xl leading-5 tracking-tight py-[18px]">
+      {/* 다음 버튼 */}
+      <div className="w-full flex flex-row justify-center items-center">
+        <button
+          onClick={handleSubmitButton} // 클릭 시 handleSubmit 함수 호출
+          className="bg-main-400 rounded-xl w-full flex flex-col justify-center items-center font-extrabold text-white text-xl leading-5 tracking-tight py-[18px]"
+        >
           다&nbsp;&nbsp;&nbsp;음
         </button>
-      </Link>
+      </div>
     </section>
   );
 };

@@ -170,7 +170,7 @@ const WaitingInvite = ({
           </div>
 
           <Link
-            href="/mkAccount"
+            href={`/mkAccount?inviteCode=${inviteCode}`} // inviteCode를 쿼리 파라미터로 추가
             className="w-full flex flex-row justify-center items-center"
           >
             <button

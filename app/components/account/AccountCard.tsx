@@ -13,7 +13,7 @@ const AccountCard = ({ accountNo, totalBalance }: AccountCardProps) => {
   return (
     <div className="w-full bg-[#98BFFB] px-5 py-4 flex flex-row justify-between gap-[10px] rounded-[12px] shadow-[0_5px_10px_0_rgba(0,0,0,0.15)]">
       <div className="flex flex-col">
-        <div className="flex flex-row">
+        <div className="flex flex-row gap-x-2">
           <span className="text-[#ffffff] font-pretendard text-[14px] font-semibold">
             신한은행
           </span>
@@ -28,7 +28,7 @@ const AccountCard = ({ accountNo, totalBalance }: AccountCardProps) => {
 
       <div className="flex items-center">
         <Link href="/account/check">
-          <span className="float text-[#ffffff] font-pretendard text-4 font-normal">
+          <span className="float text-[#ffffff] font-pretendard text-4 font-semibold">
             조회
           </span>
         </Link>
