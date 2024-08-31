@@ -33,7 +33,7 @@ const ImageUploader = ({ familymissionNo }: ImageUploaderProps) => {
     formData.append("missionImg", file);
 
     try {
-      const response = await fetch("/api/mission/uploadMissionImage", {
+      const response = await fetch("/api/mission/uploadImage", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${getAccessToken()}`, // 필요한 경우 액세스 토큰을 포함
