@@ -8,7 +8,6 @@ interface MkAccountButtonInfoProps {
 }
 
 const MkAccountButtonInfo = ({ step, setStep }: MkAccountButtonInfoProps) => {
-  // MkAccountForm에서 필요한 모든 상태와 setter 함수 정의
   const [accountNickname, setAccountNickname] = useState<string>("");
   const [depositBalance, setDepositBalance] = useState<string>("");
   const [withdrawalBankCode, setWithdrawalBankCode] = useState<string>("");
