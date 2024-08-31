@@ -5,7 +5,7 @@ import { BASE_URL } from "../../base_url";
 export async function POST(request: NextRequest) {
   try {
     const { inviteCode } = await request.json();
-    const apiUrl = `${BASE_URL}/mission/report`;
+    const apiUrl = `${BASE_URL}/family/invite-accept`;
 
     const accessToken = request.headers.get("Authorization")?.split(" ")[1];
     if (!accessToken) {
