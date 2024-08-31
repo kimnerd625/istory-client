@@ -77,7 +77,7 @@ const LoginForm = () => {
 
       const { hasFamily, inviteCode } = await response.json();
 
-      if (hasFamily && inviteCode) {
+      if (hasFamily) {
         setTimeout(() => {
           router.push("/main");
         }, 2000);
@@ -85,7 +85,7 @@ const LoginForm = () => {
         setTimeout(() => {
           router.push(`/invite/${inviteCode}/familyQueue`);
         }, 2000);
-      } else {
+      } else if (!hasFamily && !inviteCode) {
         setTimeout(() => {
           router.push("/invite");
         }, 2000);
