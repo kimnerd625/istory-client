@@ -12,7 +12,7 @@ interface BoxInfoProps {
 const BoxInfo = ({
   isDateVisible,
   isLabelVisible = true,
-  contents = "오늘은 식목일입니다./모두 식물 하나 심어 볼까요?",
+  contents = "오늘은 식목일입니다.모두 식물 하나 심어 볼까요?",
   weeklyNum = 1,
   startDate = "2024-08-31",
   endDate = "2024-09-06",

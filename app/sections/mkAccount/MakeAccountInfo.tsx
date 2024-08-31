@@ -5,10 +5,14 @@ import UserCard from "@/app/components/invite/UserCard";
 interface MkAccountButtonInfoProps {
   step: number;
   setStep: React.Dispatch<SetStateAction<number>>;
+  inviteCode: string;
 }
 
-const MkAccountButtonInfo = ({ step, setStep }: MkAccountButtonInfoProps) => {
-  // MkAccountForm에서 필요한 모든 상태와 setter 함수 정의
+const MkAccountButtonInfo = ({
+  step,
+  setStep,
+  inviteCode,
+}: MkAccountButtonInfoProps) => {
   const [accountNickname, setAccountNickname] = useState<string>("");
   const [depositBalance, setDepositBalance] = useState<string>("");
   const [withdrawalBankCode, setWithdrawalBankCode] = useState<string>("");
@@ -24,7 +28,7 @@ const MkAccountButtonInfo = ({ step, setStep }: MkAccountButtonInfoProps) => {
           신한 ISTORY 적금을 <br />
           개설해주세요.
         </h4>
-        <div className="h-[100px]"></div>
+        <div className="h-[48px]"></div>
         <MkAccountForm
           accountNickname={accountNickname}
           setAccountNickname={setAccountNickname}
@@ -40,6 +44,7 @@ const MkAccountButtonInfo = ({ step, setStep }: MkAccountButtonInfoProps) => {
           setWithdrawalBankName={setWithdrawalBankName}
           withdrawalAccountNo={withdrawalAccountNo}
           setWithdrawalAccountNo={setWithdrawalAccountNo}
+          inviteCode={inviteCode}
         />
       </section>
     </section>
