@@ -12,9 +12,15 @@ interface UserCardProps {
   userId: string;
   name: string;
   inviteCode: string;
+  isNotRepresentative?: boolean;
 }
 
-const UserCard = ({ name, userId, inviteCode }: UserCardProps) => {
+const UserCard = ({
+  name,
+  userId,
+  inviteCode,
+  isNotRepresentative = false,
+}: UserCardProps) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleDeleteButton = async () => {
@@ -72,12 +78,14 @@ const UserCard = ({ name, userId, inviteCode }: UserCardProps) => {
         {name}
       </div>
 
-      <div
-        onClick={handleDeleteButton}
-        className="absolute top-[-9px] right-[-9px] flex justify-center items-center"
-      >
-        <DeleteIcon width={32} height={32} />
-      </div>
+      {!isNotRepresentative && (
+        <div
+          onClick={handleDeleteButton}
+          className="absolute top-[-9px] right-[-9px] flex justify-center items-center"
+        >
+          <DeleteIcon width={32} height={32} />
+        </div>
+      )}
     </div>
   );
 };

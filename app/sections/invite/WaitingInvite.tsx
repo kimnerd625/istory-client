@@ -137,7 +137,7 @@ const WaitingInvite = ({
           {groupedMembers.map((group, groupIndex) => (
             <div
               key={groupIndex}
-              className="flex flex-row flex-wrap justify-center gap-5 w-[220px]"
+              className="flex flex-row flex-wrap justify-center gap-5 w-[220px] mb-4"
             >
               {group.map((member) => (
                 <UserCard

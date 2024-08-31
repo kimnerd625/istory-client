@@ -60,7 +60,7 @@ const FamilyInviteAcception = () => {
     };
 
     getRepresentName();
-  }, [inviteCode]); // inviteCode가 변경될 때마다 실행
+  }, [inviteCode]);
 
   return (
     <main className="w-full flex-1 flex flex-col justify-between items-center pr-5 pl-5">
@@ -102,12 +102,12 @@ const FamilyInviteAcception = () => {
         </div>
       </section>
       <div className="w-full flex flex-row justify-between items-center gap-5">
-        <Link href="../../inviteAcception/WaitingInvite.tsx" className="w-full">
+        <Link href={`/invite/${inviteCode}/familyQueue`} className="w-full">
           <button className="bg-main-400 rounded-xl w-full flex flex-col justify-center items-center font-extrabold text-white text-xl leading-5 tracking-tight py-[18px]">
             네 맞아요!
           </button>
         </Link>
-        <Link href="/" className="w-full">
+        <Link href={`/invite/${inviteCode}`} className="w-full">
           <button className="bg-[#908EFC] rounded-xl w-full flex flex-col justify-center items-center font-extrabold text-white text-xl leading-5 tracking-tight py-[18px]">
             아니에요!
           </button>
