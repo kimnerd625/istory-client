@@ -15,7 +15,7 @@ const SummaryInquiry = ({ accountNickName = "우리가족", accountNo="000000000
 
   return (
     <section className="w-full flex flex-col">
-      <div className="summary-inquiry-card p-5 bg-[#F4F6FA] w-full flex flex-col items-center gap-7 justify-center ">
+      <div className="summary-inquiry-card p-5 bg-[#f0f3fa] w-full flex flex-col items-center gap-7 justify-center ">
         <div className="flex flex-col justify-center items-center font-light">
           <article className="account-info text-[14px] mb-5">
             <span className="text-main-600">{accountNickName}</span>
